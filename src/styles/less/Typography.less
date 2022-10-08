@@ -1,0 +1,91 @@
+@custom-line-height-base-form-input: 1.2;
+@custom-dropdown-button-height: 0.9;
+// font size
+@title: 15pt;
+@header-24: 24pt;
+@header-20: 20pt;
+@title-header: 16pt;
+@subhead: 16pt;
+@subhead-caps-link: 12pt;
+
+@title-book: @title;
+@header-book-24: @header-24;
+@header-book-20: @header-20;
+@title-header-bold: @title-header;
+@title-header-book: @title-header;
+@subhead-book: @subhead;
+@subhead-bold-caps: @subhead-caps-link;
+@bold-link: @subhead-caps-link;
+@subhead-bold-caps-link: @subhead;
+
+@font-family-sans-serif:     'Muli', sans-serif;
+// -apple-system, BlinkMacSystemFont, "Segoe UI", Roboto, "Helvetica Neue", Arial, "Noto Sans", sans-serif, "Apple Color Emoji", "Segoe UI Emoji", "Segoe UI Symbol", "Noto Color Emoji";
+
+// @font-family-monospace:       SFMono-Regular, Menlo, Monaco, Consolas, "Liberation Mono", "Courier New", monospace;
+@font-family-base:            @font-family-sans-serif;
+
+@font-size-base:              1rem; // Assumes the browser default, typically `16px`
+@font-size-lg:                (@font-size-base * 1.25);
+@font-size-sm:                (@font-size-base * 0.875);
+
+@font-weight-lighter:         lighter;
+@font-weight-light:           300;
+@font-weight-normal:          400;
+@font-weight-meduim:          500;
+@font-weight-bold:            700;
+@font-weight-bolder:          bolder;
+
+@font-weight-base:            @font-weight-normal;
+@line-height-base:            1.5;
+
+@h1-font-size:                (@font-size-base * 2.5);
+@h2-font-size:                (@font-size-base * 2);
+@h3-font-size:                (@font-size-base * 1.75);
+@h4-font-size:                (@font-size-base * 1.5);
+@h5-font-size:                @subhead-bold-caps;
+@h6-font-size:                @font-size-base;
+
+@headings-margin-bottom:      (@spacer / 2);
+@headings-font-family:        ~""; // LESS PORT: Sass version uses `null`
+@headings-font-weight:        @font-weight-bolder;
+@headings-line-height:        1.2;
+@headings-color:              @card-grey-darker-shade; // LESS PORT: Sass version uses `null`
+
+@display1-size:               6rem;
+@display2-size:               5.5rem;
+@display3-size:               4.5rem;
+@display4-size:               3.5rem;
+
+@display1-weight:             300;
+@display2-weight:             300;
+@display3-weight:             300;
+@display4-weight:             300;
+@display-line-height:         @headings-line-height;
+
+@lead-font-size:              (@font-size-base * 1.25);
+@lead-font-weight:            300;
+
+@small-font-size:             80%;
+
+@text-muted:                  @custom-card-text-grey-dark-shade, ;
+
+@blockquote-small-color:      @gray-600;
+@blockquote-small-font-size:  @small-font-size;
+@blockquote-font-size:        (@font-size-base * 1.25);
+
+@hr-border-color:             fade(@black, 10%);
+@hr-border-width:             @border-width;
+
+@mark-padding:                0.2em;
+
+@dt-font-weight:              @font-weight-bold;
+
+@kbd-box-shadow:              inset 0 -0.1rem 0 fade(@black, 25%);
+@nested-kbd-font-weight:      @font-weight-bold;
+
+@list-inline-padding:         0.5rem;
+
+@mark-bg:                     #fcf8e3;
+
+@hr-margin-y:                 @spacer;
+

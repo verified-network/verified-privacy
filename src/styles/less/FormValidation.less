@@ -1,0 +1,23 @@
+
+@form-feedback-margin-top:          @form-text-margin-top;
+@form-feedback-font-size:           @small-font-size;
+@form-feedback-valid-color:         theme-color(success);
+@form-feedback-invalid-color:       theme-color(danger);
+
+@form-feedback-icon-valid-color:    @form-feedback-valid-color;
+@form-feedback-icon-valid:          %(~'url("data:image/svg+xml,%s%s%s")', "%3csvg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 8 8'%3e%3cpath fill='", replace("@{form-feedback-icon-valid-color}", "#", "%23"), "' d='M2.3 6.73L.6 4.53c-0.4-1.04.46-1.4 1.1-0.8l1.1 1.4 3.4-3.8c.6-0.63 1.6-0.27 1.2.7l-4 4.6c-0.43.5-0.8.4-1.1.1z'/%3e%3c/svg%3e");
+@form-feedback-icon-invalid-color:  @form-feedback-invalid-color;
+@form-feedback-icon-invalid:        %(~'url("data:image/svg+xml,%s%s%s%s%s")', "%3csvg xmlns='http://www.w3.org/2000/svg' fill='", replace("@{form-feedback-icon-invalid-color}", "#", "%23"), "' viewBox='-2 -2 7 7'%3e%3cpath stroke='", replace("@{form-feedback-icon-invalid-color}", "#", "%23"), "' d='M0 0l3 3m0-3L0 3'/%3e%3ccircle r='0.5'/%3e%3ccircle cx='3' r='0.5'/%3e%3ccircle cy='3' r='0.5'/%3e%3ccircle cx='3' cy='3' r='0.5'/%3e%3c/svg%3E");
+
+// LESS PORT: No `map-merge()` to extend the ruleset here. The variable can just be overridden if
+// different/additional values are desired.
+@form-validation-states: {
+	@valid: {
+		color: @form-feedback-valid-color;
+		icon: @form-feedback-icon-valid;
+	};
+	@invalid: {
+		color: @form-feedback-invalid-color;
+		icon: @form-feedback-icon-invalid;
+	};
+};

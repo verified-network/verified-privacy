@@ -1,0 +1,54 @@
+
+.login-dialog-content {
+    width: 38rem !important;
+    height: 98%;
+    margin-top: 0.5% !important;
+    margin-bottom: 0.5% !important;
+}
+
+.login-dialog-content .modal-content {
+    border-radius: 17px;
+    padding: 10px 30px;
+    height: 100%;
+}
+
+.login-header {
+    height: unset !important;
+}
+
+.login-header .login-logo {
+    height: 40px;
+}
+
+.login-heading {
+    margin-bottom: 48px;
+}
+
+.login-dialog-policy-text {
+    color: #8f8f98;
+    margin-top: 24px;
+}
+
+@media screen and (max-width: 567px){
+    .login-dialog-content {
+        width: 88% !important;
+        margin-left: 5% !important;
+        margin-right: 5% !important;
+        height: 80% !important;
+   }
+
+   .login-dialog-content .modal-content {
+        padding: 10px 15px;
+        height: 70%;
+    }
+
+   .login-heading {
+       font-size: 20px !important;
+       margin-bottom: 24px !important;
+   }
+
+   .login-dialog-policy-text {
+       font-size: 12px;
+       margin-top: 12px;
+   }
+}

@@ -1,0 +1,22 @@
+@custom-card-border-radius: 0.50rem;
+
+@card-spacer-y:                     0.75rem;
+@card-spacer-x:                     1.25rem;
+@card-border-width:                 @border-width;
+@card-border-radius:                @custom-card-border-radius;
+@card-border-color:                 fade(@black, 12.5%);
+@card-inner-border-radius:          calc(@card-border-radius - @card-border-width);
+@card-cap-bg:                       fade(@black, 3%);
+@card-cap-color:                    ~""; // LESS PORT: Sass version uses `null`
+@card-color:                        ~""; // LESS PORT: Sass version uses `null`
+@card-bg:                           @white;
+
+@card-img-overlay-padding:          1.25rem;
+
+@card-group-margin:                 (@grid-gutter-width / 2);
+@card-deck-margin:                  @card-group-margin;
+
+@card-columns-count:                3;
+@card-columns-gap:                  1.25rem;
+@card-columns-margin:               @card-spacer-y;
+

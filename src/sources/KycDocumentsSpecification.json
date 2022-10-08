@@ -1,0 +1,296 @@
+[
+  {
+    "code": "CH",
+    "name": "Switzerland",
+    "account": [
+      {
+        "category": "business",
+        "requirements": {
+          "compulsory": [
+            {
+              "document": "Certified Company register extract."
+            },
+            {
+              "document": "List of shareholders with 10% or more up to the UBO.",
+              "points": [
+                "Include Each layer of ownership – e.g. all shareholders with 10% or more",
+                "Include The exact full legal name and country of domicile of the shareholder",
+                "Include The exact name and country of nationality of the UBO",
+                "Be dated and signed by authorized signatories of the company"
+              ]
+            },
+            {
+              "document": "Certified and valid IDs of authorized signatories"
+            }
+          ],
+          "optional": [
+            {
+              "document": "Latest Articles and Memorandum of Association (Statuten).",
+              "points": [
+                "Only for companies issuing investment products"
+              ]
+            },
+            {
+              "document": "Latest audited annual report/financial statements.",
+              "points": [
+                "Only for companies issuing investment products"
+              ]
+            },
+            {
+              "document": "List of authorized signatories.",
+              "points": [
+                "Only for companies issuing investment products"
+              ]
+            },
+            {
+              "document": "Certified and valid IDs of the beneficial owners (BOs) (if any).",
+              "points": [
+                "Only for companies issuing investment products"
+              ]
+            },
+            {
+              "document": "Certified and valid IDs of the directors.",
+              "points": [
+                "Only for companies issuing investment products"
+              ]
+            },
+            {
+              "document": "Proof of domicile for directors and BOs.",
+              "points": [
+                "Only for companies issuing investment products"
+              ]
+            },
+            {
+              "document": "CV of BO and directors.",
+              "points": [
+                "Only for companies issuing investment products"
+              ]
+            },
+            {
+              "document": "Certified and valid IDs of the directors.",
+              "points": [
+                "Only for companies issuing investment products"
+              ]
+            },
+            {
+              "document": "Source and composition of wealth of the UBO incl. milestones of wealth generation.",
+              "points": [
+                "Only for companies issuing investment products"
+              ]
+            },
+            {
+              "document": "Source of funds of the company – expected to be available in the audited annual report and/or financial statements.",
+              "points": [
+                "Only for companies issuing investment products"
+              ]
+            },
+            {
+              "document": "Proof of business activity of the company – if not available in the audited annual report and/or financial statements.",
+              "points": [
+                "Only for companies issuing investment products"
+              ]
+            },
+            {
+              "document": "Board resolution for opening a bank account at ISP Securities AG.",
+              "points": [
+                "Only for companies issuing investment products"
+              ]
+            }
+          ]
+        }
+      },
+      {
+        "category": "individual",
+        "requirements": {
+          "compulsory": [
+          ],
+          "optional": [
+            {
+              "document": "Certified net worth statement.",
+              "points": [
+                "Only for professional investors."
+              ]
+            },
+            {
+              "document": "Certified professional qualifications, if they relate to work in finance.",
+              "points": [
+                "Only for professional investors."
+              ]
+            }
+          ]
+        }
+      },
+      {
+        "category": "service_provider",
+        "requirements": {
+          "compulsory": [
+            {
+              "document": "Certified Company register extract."
+            },
+            {
+              "document": "List of shareholders with 10% or more up to the UBO."
+            },
+            {
+              "document": "Certified regulatory authorization or license applicable to services provided."
+            },
+            {
+              "document": "List of authorized users proposed to access the Verified Network."
+            },
+            {
+              "document": "Certified and valid IDs of authorized users."
+            }
+          ],
+          "optional": [
+          ]
+        }
+      }
+    ]
+  },
+  {
+    "code": "IN",
+    "name": "India",
+    "account": [
+      {
+        "category": "business",
+        "requirements": {
+          "compulsory": [
+          ],
+          "optional": [
+          ]
+        }
+      },
+      {
+        "category": "individual",
+        "requirements": {
+          "compulsory": [
+          ],
+          "optional": [
+          ]
+        }
+      },
+      {
+        "category": "service_provider",
+        "requirements": {
+          "compulsory": [
+          ],
+          "optional": [
+          ]
+        }
+      }
+    ]
+  },
+  {
+    "code": "CU",
+    "name": "Cuba",
+    "account": [
+      {
+        "category": "business",
+        "requirements": {
+          "compulsory": [
+          ],
+          "optional": [
+          ]
+        }
+      },
+      {
+        "category": "individual",
+        "requirements": {
+          "compulsory": [
+          ],
+          "optional": [
+          ]
+        }
+      },
+      {
+        "category": "service_provider",
+        "requirements": {
+          "compulsory": [
+          ],
+          "optional": [
+          ]
+        }
+      }
+    ]
+  },
+  {
+    "code": "DEFAULT",
+    "name": "DEFAULT",
+    "account": [
+      {
+        "category": "business",
+        "requirements": {
+          "compulsory": [
+            {
+              "document": "Certified Company register extract"
+            },
+            {
+              "document": "List of shareholders with 10% or more up to the UBO. The list must:",
+              "points": [
+                "Include Each layer of ownership – e.g. all shareholders with 10% or more",
+                "Include The exact full legal name and country of domicile of the shareholder",
+                "Include The exact name and country of nationality of the UBO",
+                "Be dated and signed by authorized signatories of the company"
+              ]
+            },
+            {
+              "document": "Latest Articles and Memorandum of Association"
+            },
+            {
+              "document": "Latest audited annual report/financial statements"
+            },
+            {
+              "document": "List of authorized signatories <1y"
+            },
+            {
+              "document": "Certified and valid IDs of authorized signatories"
+            },
+            {
+              "document": "Certified and valid IDs of the beneficial owners (BOs) (if any)"
+            },
+            {
+              "document": "Certified and valid IDs of the directors"
+            },
+            {
+              "document": "Proof of domicile for directors and BOs"
+            },
+            {
+              "document": "CV of BO and directors"
+            },
+            {
+              "document": "Source and composition of wealth of the UBO incl. milestones of wealth generation"
+            },
+            {
+              "document": "Source of funds of the company – expected to be available in the audited annual report and/or financial statements."
+            },
+            {
+              "document": "Proof of business activity of the company – if not available in the audited annual report and/or financial statements"
+            },
+            {
+              "document": "Certified regulatory authorization or license applicable to services provided"
+            }
+          ],
+          "optional": [
+          ]
+        }
+      },
+      {
+        "category": "individual",
+        "requirements": {
+          "compulsory": [
+          ],
+          "optional": [
+          ]
+        }
+      },
+      {
+        "category": "service_provider",
+        "requirements": {
+          "compulsory": [
+          ],
+          "optional": [
+          ]
+        }
+      }
+    ]
+  }
+]

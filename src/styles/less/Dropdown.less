@@ -1,0 +1,44 @@
+@dropdown-min-width:                10rem;
+@dropdown-padding-y:                0.5rem;
+@dropdown-spacer:                   0.125rem;
+@dropdown-font-size:                @font-size-base;
+@dropdown-color:                    @body-color;
+@dropdown-bg:                       @white;
+@dropdown-border-color:             fade(@black, 15%);
+@dropdown-border-radius:            @border-radius;
+@dropdown-border-width:             @border-width;
+@dropdown-inner-border-radius:      calc(@dropdown-border-radius - @dropdown-border-width);
+@dropdown-divider-bg:               @gray-200;
+@dropdown-divider-margin-y:         @nav-divider-margin-y;
+@dropdown-box-shadow:               0 0.5rem 1rem fade(@black, 17.5%);
+
+@dropdown-link-color:               @gray-900;
+@dropdown-link-hover-color:         darken(@gray-900, 5%);
+@dropdown-link-hover-bg:            @gray-100;
+
+@dropdown-link-active-color:        @component-active-color;
+@dropdown-link-active-bg:           @component-active-bg;
+
+@dropdown-link-disabled-color:      @gray-600;
+
+@dropdown-item-padding-y:           0.25rem;
+@dropdown-item-padding-x:           1.5rem;
+
+@dropdown-header-color:             @gray-600;
+
+
+.dropdwnBtnBorder button.dropdown-toggle {
+    border: 2px solid @primary;
+    background-color: white;
+    color: @primary;
+  }
+
+  @media screen and (max-width:425px){
+    .dropdwnbtns {
+     display:flex;
+     justify-content: flex-start !important;
+     padding-left: 0px;
+     margin-left: -5px;
+   }
+   
+   }

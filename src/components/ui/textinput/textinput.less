@@ -1,0 +1,104 @@
+@import "../../../styles/index.less";
+.textForm,
+.picky__input {
+  border-radius: 50px !important;
+  padding: 20px 0px 20px 12px !important;
+  font-size: 12pt !important;
+  -webkit-appearance: none;
+}
+input.textForm.form-control {
+  font-size: 15px !important;
+}
+.textForm:focus {
+  box-shadow: none !important;
+  border-color: @card-grey-darker-shade !important;
+  color: @card-grey-darker-shade !important;
+}
+
+.dropdown {
+  box-sizing: border-box;
+  padding: 4px 0px 4px 12px !important;
+  height: calc(1.2em + 0.75rem + 12px) !important;
+}
+
+.picky__input {
+  padding: 0px 20px !important;
+  height: calc(1.2em + 0.75rem + 12px) !important;
+}
+.picky__input::after {
+  top: 20px !important;
+}
+.picky__input:focus {
+  outline: none !important;
+}
+button.picky__input {
+  border-color: #c7c8ce;
+}
+button.picky__input:focus {
+    border-color: #393939;
+}
+label {
+  margin-left: 10px;
+}
+/* Type Date */
+input[type="date"]:before {
+  content: attr(placeholder) !important;
+  color: #aaa;
+  margin-right: 0.3em;
+}
+
+/* CheckBox*/
+
+.mb-3 .form-check {
+  display: inline-block;
+  padding-left: 2.25rem;
+  padding-top: 0.5rem;
+}
+
+/* Type Color */
+
+input[type="color"] {
+  width: 50px;
+  height: 35px;
+  margin-left: 10px;
+  border: 1px solid transparent;
+}
+
+.color label.form-label {
+  margin-bottom: 0px;
+}
+
+#previewButton label.form-label{
+  display: block;
+}
+
+
+/* Type Range */
+input.slider {
+  display: block;
+  margin-left: 10px;
+  margin-top: 10px;
+  width: 90%;
+}
+
+.rangeType span {
+  margin-left: 5px;
+}
+
+/* Form Title  and  Text Area */
+.formTitle label.form-label {
+  margin-bottom: 10px;
+  margin-top: 15px;
+}
+
+input.placeholderReadOnly.form-control::placeholder, .textAreaDisabled.form-control::placeholder {
+  color: #495057;
+}
+
+.textAreaDisabled.form-control {
+  border-radius: 10px;
+}
+
+.copyCode {
+  margin-bottom: 50px;
+}

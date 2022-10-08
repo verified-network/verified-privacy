@@ -1,0 +1,12 @@
+
+input.textForm {
+    border-radius: 50px;
+    padding: 20px;
+    font-size: 12pt;
+}
+
+.textForm:focus {
+    box-shadow: none !important;
+    border-color: #393939 !important;
+    color: #393939 !important;
+}

@@ -1,0 +1,61 @@
+[
+  {
+    "category": "Distributions",
+    "sub_categories": [
+      "Capital distributions",
+      "Interim liquidations",
+      "Bonus issues",
+      "Distributions of rights offers",
+      "ESOPs"
+    ]
+  },
+  {
+    "category": "Reorganizations",
+    "sub_categories": [
+      "Final liquidations",
+      "Exchanges of securities",
+      "Mergers & Acquisitions",
+      "Assimilations",
+      "Stock splits",
+      "Reverse splits",
+      "Cash mergers",
+      "Exercises of rights",
+      "Repurchase offers",
+      "Exchange offers",
+      "Tender offers"
+    ]
+  },
+  {
+    "category": "Information",
+    "sub_categories": [
+      "GM resolutions",
+      "Changes of investment policy/remuneration model",
+      "Dates of closure of share register",
+      "Dates of next GM",
+      "Declarative capital decreases",
+      "Dividends from reserves",
+      "Invitations to next GM",
+      "Financial reports",
+      "Free floats",
+      "Bonus shares",
+      "Capital decreases by repayment using nominal value repayment",
+      "Capital decreases by means of destruction of shares",
+      "Capital structures",
+      "Borrowings",
+      "Name changes",
+      "Dividends in kind",
+      "Restrictions of transferability for registered shares",
+      "Changes of business activity",
+      "Changes of website address",
+      "Changes of balance sheet date",
+      "Changes of auditors",
+      "Changes of contact persons",
+      "Change in Board of Directors",
+      "Change in Key Management Personnel",
+      "Business Performance",
+      "Business Activities",
+      "Litigations & regulatory",
+      "Any material developments in the Company"
+    ]
+  }
+]

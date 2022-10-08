@@ -1,0 +1,21 @@
+{
+    "azureFunctions.deploySubpath": ".",
+    "azureFunctions.postDeployTask": "npm install",
+    "azureFunctions.projectLanguage": "JavaScript",
+    "azureFunctions.projectRuntime": "~3",
+    "azureFunctions.preDeployTask": "npm prune",
+    "cSpell.words": [
+      "Demat",
+      "DPID",
+      "FATCA",
+      "Ipfs",
+      "ISIN",
+      "KYCAML",
+      "passbase",
+      "VXUSD"
+    ],
+    "eslint.format.enable": true,
+    "editor.codeActionsOnSave": {
+      "source.fixAll.eslint": true
+    },
+}
