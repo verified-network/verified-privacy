@@ -1,7 +1,7 @@
 {
   "private": true,
   "version": "0.2.0",
-  "description": "Verified Wallet",
+  "description": "Verified Investments",
   "main": "",
   "scripts": {
     "start": "node --max-old-space-size=6114 server.js --env=dev",
