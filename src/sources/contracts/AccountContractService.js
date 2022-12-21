@@ -114,29 +114,29 @@ class AccountContractService {
 
   getBlockNumber() {
     return this._getOrCreateHolder(this.getWallet().address, 'default')
-        .then((holderAddress) => {
-          const holderContract = new HolderContract(this.getWallet(), holderAddress);
+      .then((holderAddress) => {
+        const holderContract = new HolderContract(this.getWallet(), holderAddress);
 
-          return holderContract.getBlock()
-              .then((response) => {
-                return Response.value(response);
-              })
-              .then((value) => {
-                return value.toString();
-              });
-        });
+        return holderContract.getBlock()
+          .then((response) => {
+            return Response.value(response);
+          })
+          .then((value) => {
+            return value.toString();
+          });
+      });
   }
 
   setBlockNumber(blockNumber) {
     return this._getHolderAddress(this.getWallet().address, 'default')
-        .then((holderAddress) => {
-          const holderContract = new HolderContract(this.getWallet(), holderAddress);
+      .then((holderAddress) => {
+        const holderContract = new HolderContract(this.getWallet(), holderAddress);
 
-          return holderContract.setBlock(blockNumber)
-              .then((response) => {
-                return Response.empty(response);
-              });
-        });
+        return holderContract.setBlock(blockNumber)
+          .then((response) => {
+            return Response.empty(response);
+          });
+      });
   }
 
   _postEntry({
@@ -146,25 +146,25 @@ class AccountContractService {
     const holderName = 'default';
 
     const setupAccount = () => this._setupAccount(
-        clientAddress, holderName, ledger.name, ledger.group, accountName, currency,
+      clientAddress, holderName, ledger.name, ledger.group, accountName, currency,
     );
 
     return setupAccount()
-        .then((accountContract) => {
-          return this._getOrCreateHolder(counterPartAddress, 'default')
-              .then((counterPartHolder) => {
-                console.log('CounterPartyHolder', counterPartHolder);
+      .then((accountContract) => {
+        return this._getOrCreateHolder(counterPartAddress, 'default')
+          .then((counterPartHolder) => {
+            console.log('CounterPartyHolder', counterPartHolder);
 
-                const now = new Date();
-                const date = formatDate(now);
+            const now = new Date();
+            const date = formatDate(now);
 
-                console.log('Date:', date);
+            console.log('Date:', date);
 
-                return accountContract
-                    .postEntry(counterPartHolder, amount, entryType, date, description, voucherType, transactionHash);
-              });
-          // .then((response) => Response.empty(response)); //FIXME: Uncomment this
-        });
+            return accountContract
+              .postEntry(counterPartHolder, amount, entryType, date, description, voucherType, transactionHash);
+          });
+        // .then((response) => Response.empty(response)); //FIXME: Uncomment this
+      });
   }
 
   /**
@@ -180,72 +180,72 @@ class AccountContractService {
    */
   _setupAccount(clientAddress, holderName, ledgerName, ledgerGroup, accountName, currency) {
     return this._getHolderAddress(clientAddress, holderName)
-        .then((holderAddress) => {
-          return holderAddress || this._createHolder(clientAddress, holderName);
-        })
-        .then((holderAddress) => {
-          console.log('Step 1 (Holder address):', holderAddress);
-          return this._getLedgerAddress(holderAddress, ledgerName, ledgerGroup)
-              .then((ledgerAddress) => {
-                return ledgerAddress || this._createLedger(holderAddress, ledgerName, ledgerGroup);
-              });
-        })
-        .then((ledgerAddress) => {
-          console.log('Step 2 (Ledger address):', ledgerAddress);
-          return this._getAccountAddress(ledgerAddress, accountName, currency)
-              .then((accountAddress) => {
-                return accountAddress || this._createAccount(ledgerAddress, accountName, currency);
-              });
-        })
-        .then((accountAddress) => {
-          console.log('Step 3 (Account address):', accountAddress);
+      .then((holderAddress) => {
+        return holderAddress || this._createHolder(clientAddress, holderName);
+      })
+      .then((holderAddress) => {
+        console.log('Step 1 (Holder address):', holderAddress);
+        return this._getLedgerAddress(holderAddress, ledgerName, ledgerGroup)
+          .then((ledgerAddress) => {
+            return ledgerAddress || this._createLedger(holderAddress, ledgerName, ledgerGroup);
+          });
+      })
+      .then((ledgerAddress) => {
+        console.log('Step 2 (Ledger address):', ledgerAddress);
+        return this._getAccountAddress(ledgerAddress, accountName, currency)
+          .then((accountAddress) => {
+            return accountAddress || this._createAccount(ledgerAddress, accountName, currency);
+          });
+      })
+      .then((accountAddress) => {
+        console.log('Step 3 (Account address):', accountAddress);
 
-          return new AccountContract(this.getWallet(), accountAddress);
-        });
+        return new AccountContract(this.getWallet(), accountAddress);
+      });
   }
 
   _getOrCreateHolder(clientAddress, holderName) {
     return this._getHolderAddress(clientAddress, holderName)
-        .then((holderAddress) => {
-          if (holderAddress) {
-            return holderAddress;
-          }
+      .then((holderAddress) => {
+        if (holderAddress) {
+          return holderAddress;
+        }
 
-          return this._createHolder(clientAddress, holderName);
-        });
+        return this._createHolder(clientAddress, holderName);
+      });
   }
 
   _getHolderAddress(clientAddress, holderName) {
     const accountCreatorAddress = this.getWallet().address;
 
     return this.systemContract.getAccountHolders(accountCreatorAddress)
-        .then((response) => Response.array(response))
-        .then((holders) => {
+      .then((response) => Response.array(response))
+      .then((holders) => {
         // Each promise return holderDetails of holder
-          const promises = holders.map((holder) => {
-            return this.systemContract
-                .getHolderDetails(holder)
-                .then((response) => Response.array(response))
-                .then((response) => {
-                  return {
-                    address: holder,
-                    clientAddress: response[1],
-                    name: Response.parseBytes32Value(response[0]),
-                  };
-                });
-          });
-
-          return Promise.all(promises);
-        })
-        .then((holders) => {
-          for (const holder of holders) {
-            if (holder['name'] === holderName && holder['clientAddress'] === clientAddress) {
-              return holder['address'];
-            }
-          }
-
-          return null;
+        const promises = holders.map((holder) => {
+          return this.systemContract
+            .getHolderDetails(holder)
+            .then((response) => Response.array(response))
+            .then((response) => {
+              return {
+                address: holder,
+                clientAddress: response[1],
+                name: Response.parseBytes32Value(response[0]),
+              };
+            });
         });
+
+        return Promise.all(promises);
+      })
+      .then((holders) => {
+        for (const holder of holders) {
+          if (holder['name'] === holderName && holder['clientAddress'] === clientAddress) {
+            return holder['address'];
+          }
+        }
+
+        return null;
+      });
   }
 
   /**
@@ -257,39 +257,39 @@ class AccountContractService {
    */
   _createHolder(clientAddress, holderName) {
     return this.systemContract.createHolder(holderName, clientAddress)
-        .then((response) => Response.empty(response))
-        .then(() => {
-          return this._getHolderAddress(clientAddress, holderName);
-        });
+      .then((response) => Response.empty(response))
+      .then(() => {
+        return this._getHolderAddress(clientAddress, holderName);
+      });
   }
 
   _getLedgerAddress(holderAddress, ledgerName, ledgerGroup) {
     return this.systemContract.getAccountLedgers(holderAddress)
-        .then((response) => Response.array(response))
-        .then((ledgers) => {
-          const promises = ledgers.map((ledger) => {
-            return this.systemContract.getLedgerDetails(ledger)
-                .then((response) => Response.array(response))
-                .then((response) => {
-                  return {
-                    address: ledger,
-                    name: Response.parseBytes32Value(response[0]),
-                    group: Response.parseBytes32Value(response[1]),
-                  };
-                });
-          });
-
-          return Promise.all(promises);
-        })
-        .then((ledgers) => {
-          for (const ledger of ledgers) {
-            if (ledger['name'] === ledgerName && ledger['group'] === ledgerGroup) {
-              return ledger['address'];
-            }
-          }
-
-          return null;
+      .then((response) => Response.array(response))
+      .then((ledgers) => {
+        const promises = ledgers.map((ledger) => {
+          return this.systemContract.getLedgerDetails(ledger)
+            .then((response) => Response.array(response))
+            .then((response) => {
+              return {
+                address: ledger,
+                name: Response.parseBytes32Value(response[0]),
+                group: Response.parseBytes32Value(response[1]),
+              };
+            });
         });
+
+        return Promise.all(promises);
+      })
+      .then((ledgers) => {
+        for (const ledger of ledgers) {
+          if (ledger['name'] === ledgerName && ledger['group'] === ledgerGroup) {
+            return ledger['address'];
+          }
+        }
+
+        return null;
+      });
   }
 
   /**
@@ -304,39 +304,39 @@ class AccountContractService {
     const holderContract = new HolderContract(this.getWallet(), holderAddress);
 
     return holderContract.createLedger(ledgerName, ledgerGroup)
-        .then((response) => Response.empty(response))
-        .then(() => {
-          return this._getLedgerAddress(holderAddress, ledgerName, ledgerGroup);
-        });
+      .then((response) => Response.empty(response))
+      .then(() => {
+        return this._getLedgerAddress(holderAddress, ledgerName, ledgerGroup);
+      });
   }
 
   _getAccountAddress(ledgerAddress, accountName, currency) {
     return this.systemContract.getLedgerAccounts(ledgerAddress)
-        .then((response) => Response.array(response))
-        .then((accounts) => {
-          const promises = accounts.map((account) => {
-            return this.systemContract.getAccountDetails(account)
-                .then((response) => Response.array(response))
-                .then((response) => {
-                  return {
-                    address: account,
-                    name: Response.parseBytes32Value(response[0]),
-                    currency: Response.parseBytes32Value(response[1]),
-                  };
-                });
-          });
-
-          return Promise.all(promises);
-        })
-        .then((accounts) => {
-          for (const account of accounts) {
-            if (account['name'] === accountName && account['currency'] === currency) {
-              return account['address'];
-            }
-          }
-
-          return null;
+      .then((response) => Response.array(response))
+      .then((accounts) => {
+        const promises = accounts.map((account) => {
+          return this.systemContract.getAccountDetails(account)
+            .then((response) => Response.array(response))
+            .then((response) => {
+              return {
+                address: account,
+                name: Response.parseBytes32Value(response[0]),
+                currency: Response.parseBytes32Value(response[1]),
+              };
+            });
         });
+
+        return Promise.all(promises);
+      })
+      .then((accounts) => {
+        for (const account of accounts) {
+          if (account['name'] === accountName && account['currency'] === currency) {
+            return account['address'];
+          }
+        }
+
+        return null;
+      });
   }
 
   _createAccount(ledgerAddress, accountName, currency) {
@@ -345,10 +345,10 @@ class AccountContractService {
     const ledgerContract = new LedgerContract(this.getWallet(), ledgerAddress);
 
     return ledgerContract.createAccount(accountName, currency)
-        .then((response) => Response.empty(response))
-        .then(() => {
-          return this._getAccountAddress(ledgerAddress, accountName, currency);
-        });
+      .then((response) => Response.empty(response))
+      .then(() => {
+        return this._getAccountAddress(ledgerAddress, accountName, currency);
+      });
   }
 }
 

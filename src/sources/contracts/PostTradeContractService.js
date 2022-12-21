@@ -24,18 +24,18 @@ class PostTradeContractService extends ContractService {
     const clientContract = new ClientContractService(this.getPassword());
 
     return clientContract.getDpid()
-        .then((dpId) => {
-          return this.postTradeContract.getSettlementRequests(dpId)
-              .then((response) => Response.array(response))
-              .then((response) => response.filter((element) => element !== NULL_REF))
-              .then((refs) => {
-                const promises = refs.map((ref) => {
-                  return this._getSettlementRequest(ref);
-                });
+      .then((dpId) => {
+        return this.postTradeContract.getSettlementRequests(dpId)
+          .then((response) => Response.array(response))
+          .then((response) => response.filter((element) => element !== NULL_REF))
+          .then((refs) => {
+            const promises = refs.map((ref) => {
+              return this._getSettlementRequest(ref);
+            });
 
-                return Promise.all(promises);
-              });
-        });
+            return Promise.all(promises);
+          });
+      });
   }
 
   acceptSettlement(ref) {
@@ -48,45 +48,45 @@ class PostTradeContractService extends ContractService {
 
   _getSettlementRequest(ref) {
     return this.postTradeContract.getSettlementRequest(ref)
-        .then((response) => Response.array(response))
-        .then((response) => {
-          return {
-            ref,
-            transferor: response[0],
-            transferee: response[1],
-            security: response[2],
-            securityName: Response.parseBytes32Value(response[3]),
-            status: Response.parseBytes32Value(response[4]),
-            transferorDPID: Response.parseBytes32Value(response[5]),
-            transfereeDPID: Response.parseBytes32Value(response[6]),
-            isin: Response.parseBytes32Value(response[7]),
-            company: Response.parseBytes32Value(response[8]),
-            currency: Response.parseBytes32Value(response[9]),
-            price: response[10],
-            consideration: response[11],
-            unitsToTransfer: response[12],
-            executionDate: response[13],
-          };
-        })
-        .then((response) => {
-          const kycContractService = new KycContractService(this.getPassword());
+      .then((response) => Response.array(response))
+      .then((response) => {
+        return {
+          ref,
+          transferor: response[0],
+          transferee: response[1],
+          security: response[2],
+          securityName: Response.parseBytes32Value(response[3]),
+          status: Response.parseBytes32Value(response[4]),
+          transferorDPID: Response.parseBytes32Value(response[5]),
+          transfereeDPID: Response.parseBytes32Value(response[6]),
+          isin: Response.parseBytes32Value(response[7]),
+          company: Response.parseBytes32Value(response[8]),
+          currency: Response.parseBytes32Value(response[9]),
+          price: response[10],
+          consideration: response[11],
+          unitsToTransfer: response[12],
+          executionDate: response[13],
+        };
+      })
+      .then((response) => {
+        const kycContractService = new KycContractService(this.getPassword());
 
-          const transferorName = kycContractService.getFullName(response.transferor);
-          const transfereeName = kycContractService.getFullName(response.transferee);
+        const transferorName = kycContractService.getFullName(response.transferor);
+        const transfereeName = kycContractService.getFullName(response.transferee);
 
-          return Promise.all([transferorName, transfereeName])
-              .then(([transferorName, transfereeName]) => {
-                response.transferorName = transferorName;
-                response.transfereeName = transfereeName;
+        return Promise.all([transferorName, transfereeName])
+          .then(([transferorName, transfereeName]) => {
+            response.transferorName = transferorName;
+            response.transfereeName = transfereeName;
 
-                return response;
-              });
-        });
+            return response;
+          });
+      });
   }
 
   _setSettlementStatus(ref, status) {
     return this.postTradeContract.setSettlementStatus(ref, status)
-        .then((response) => Response.empty(response));
+      .then((response) => Response.empty(response));
   }
 }
 

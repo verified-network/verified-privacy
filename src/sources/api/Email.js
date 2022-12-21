@@ -10,22 +10,22 @@ function sendAcceptedKycEmail(userAddress) {
   const axios = Axios.getInstance();
 
   return axios
-      .post(Config.emailApiUrl, {
-        user_address: userAddress,
-        email_template: EmailTemplate.KYC_ACCEPTED,
-      })
-      .then((response) => response.data);
+    .post(Config.emailApiUrl, {
+      user_address: userAddress,
+      email_template: EmailTemplate.KYC_ACCEPTED,
+    })
+    .then((response) => response.data);
 }
 
 function sendDeclinedKycEmail(userAddress) {
   const axios = Axios.getInstance();
 
   return axios
-      .post(Config.emailApiUrl, {
-        user_address: userAddress,
-        email_template: EmailTemplate.KYC_DECLINED,
-      })
-      .then((response) => response.data);
+    .post(Config.emailApiUrl, {
+      user_address: userAddress,
+      email_template: EmailTemplate.KYC_DECLINED,
+    })
+    .then((response) => response.data);
 }
 
 export default {

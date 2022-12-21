@@ -13,12 +13,12 @@ class HolderContractService extends ContractService {
     const accountContractService = new AccountContractService(this.getWallet());
 
     return accountContractService._getOrCreateHolder(this.getWallet().address, 'default')
-        .then((holderAddress) => {
-          const holderContract = new HolderContract(this.getWallet(), holderAddress);
+      .then((holderAddress) => {
+        const holderContract = new HolderContract(this.getWallet(), holderAddress);
 
-          return holderContract.fetchTransactions(fromDate, toDate)
-              .then((response) => Response.empty(response));
-        });
+        return holderContract.fetchTransactions(fromDate, toDate)
+          .then((response) => Response.empty(response));
+      });
   }
 
   getTransactions(toDate, currency) {
@@ -27,53 +27,52 @@ class HolderContractService extends ContractService {
     const accountContractService = new AccountContractService(this.getWallet());
 
     return accountContractService._getOrCreateHolder(this.getWallet().address, 'default')
-        .then((holderAddress) => {
-          const holderContract = new HolderContract(this.getWallet(), holderAddress);
+      .then((holderAddress) => {
+        const holderContract = new HolderContract(this.getWallet(), holderAddress);
 
-          return holderContract.getTransactions(toDate, currency)
-              .then((response) => Response.value(response))
-              .then((length) => ({
-                holderContract,
-                length,
-              }));
-        })
-        .then(({holderContract, length}) => {
-          if (length === '0') {
-            return [];
-          }
+        return holderContract.getTransactions(toDate, currency)
+          .then((response) => Response.value(response))
+          .then((length) => ({
+            holderContract,
+            length,
+          }));
+      })
+      .then(({holderContract, length}) => {
+        if (length === '0') {
+          return [];
+        }
 
-          const entries = holderContract.getEntry('1', length.toString(), toDate, currency)
-              .then((response) => Response.array(response));
+        const entries = holderContract.getEntry('1', length.toString(), toDate, currency)
+          .then((response) => Response.array(response));
 
-          return entries;
-        })
-        .then((responses) => {
-          const entries = responses
-              .filter((response) => response[0] !== NULL_ADDRESS)
-              .map((response) => {
-                return {
-                  type: Response.parseBytes32Value(response[0]),
-                  date: new Date(parseInt(response[1].toString()) * 1000).toLocaleString(),
-                  description: Response.parseBytes32Value(response[2]),
-                  voucher: Response.parseBytes32Value(response[3]),
-                  amount: response[4].toString(),
-                  party: response[5],
-                };
-              });
-              console.log("HolderContractService entries", entries);
-              const kycContractService = new KycContractService(this.getPassword());
+        return entries;
+      })
+      .then((responses) => {
+        const entries = responses
+          .filter((response) => response[0] !== NULL_ADDRESS)
+          .map((response) => {
+            return {
+              type: Response.parseBytes32Value(response[0]),
+              date: new Date(parseInt(response[1].toString()) * 1000).toLocaleString(),
+              description: Response.parseBytes32Value(response[2]),
+              voucher: Response.parseBytes32Value(response[3]),
+              amount: response[4].toString(),
+              party: response[5],
+            };
+          });
+        console.log('HolderContractService entries', entries);
+        const kycContractService = new KycContractService(this.getPassword());
 
-              const promises = entries.map(entry => {
-                return kycContractService.getFullName(entry.party)
-                .then((partyName) => {
-                  entry.partyName = partyName;
-                  return entry;
-                });
-              });
+        const promises = entries.map((entry) => {
+          return kycContractService.getFullName(entry.party)
+            .then((partyName) => {
+              entry.partyName = partyName;
+              return entry;
+            });
+        });
 
-              return Promise.all(promises);
-        })
-        
+        return Promise.all(promises);
+      });
   }
 }
 

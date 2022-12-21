@@ -1,7 +1,7 @@
-import React, { Component } from 'react';
-import { Form, Modal } from 'react-bootstrap';
+import React, {Component} from 'react';
+import {Form, Modal} from 'react-bootstrap';
 import SocialButton from '../../ui/SocialButton';
-import { IdentityProvider, buildLoginUrl } from '../../../sources/LoginUrl';
+import {IdentityProvider, buildLoginUrl} from '../../../sources/LoginUrl';
 //  import {Images} from '../../../assets';
 import GoogleLogo from '../../../assets/images/google_icon.svg';
 import FacebookLogo from '../../../assets/images/facebook_icon.svg';
@@ -10,18 +10,18 @@ import MicrosoftLogo from '../../../assets/images/microsoft_icon.svg';
 import VerifiedLogo from '../../../assets/images/logo/logo-small.svg';
 import './login.css';
 import LocalSessionManager from 'sources/utils/LocalSessionManager';
-import { LOGOUT_URL } from '../../../sources/Config';
+import {LOGOUT_URL} from '../../../sources/Config';
 
 class LogIn extends Component {
   loginUrl(identityProvider) {
-    const { userRole } = this.props;
+    const {userRole} = this.props;
     return buildLoginUrl(identityProvider, userRole);
   }
 
-  componentDidMount(){
+  componentDidMount() {
     const token = LocalSessionManager.getAuthToken();
-    if(token) {
-      location.href = "/investor/dashboard"
+    if (token) {
+      location.href = '/issuer/dashboard';
     } else {
       location.href = LOGOUT_URL;
     }

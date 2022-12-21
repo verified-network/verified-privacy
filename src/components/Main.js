@@ -1,7 +1,7 @@
 import React from 'react';
-import { BrowserRouter as Router, Route } from 'react-router-dom';
+import {BrowserRouter as Router, Route} from 'react-router-dom';
 import i18n from '../translations/i18n';
-import { I18nextProvider } from 'react-i18next';
+import {I18nextProvider} from 'react-i18next';
 
 require('normalize.css/normalize.css');
 require('styles/App.css');
@@ -10,10 +10,10 @@ require('styles/Verified-common.css');
 import LogIn from './layouts/Common/Login';
 import PasswordStore from 'components/layouts/Common/PasswordStore';
 import PasswordModal from 'components/layouts/Common/PasswordModal';
-import InvestorMain from 'components/layouts/Investor/Main';
+import InvestorMain from 'components/layouts/Issuer/Main';
 import LocalSessionManager from 'sources/utils/LocalSessionManager';
-import { PushNotificationProvider } from '../notifications/notificationsHandler';
-import { ApolloClient, InMemoryCache, ApolloProvider } from '@apollo/client';
+import {PushNotificationProvider} from '../notifications/notificationsHandler';
+import {ApolloClient, InMemoryCache, ApolloProvider} from '@apollo/client';
 import {
   QueryClient,
   QueryClientProvider,
@@ -48,7 +48,7 @@ class AppComponent extends React.Component {
             return Promise.resolve(this.password);
           } else {
             if (forSettingWallet || LocalSessionManager.isWalletStored()) {
-              that.setState({ passwordModalVisibility: true });
+              that.setState({passwordModalVisibility: true});
             }
 
             return new Promise((resolve) => {
@@ -79,11 +79,11 @@ class AppComponent extends React.Component {
     }
 
     this.state.passwordsRequests = [];
-    this.setState({ passwordModalVisibility: false });
+    this.setState({passwordModalVisibility: false});
   }
 
   render() {
-    const { passwordStoreData, passwordModalVisibility } = this.state;
+    const {passwordStoreData, passwordModalVisibility} = this.state;
 
     return (
       <I18nextProvider i18n={i18n}>

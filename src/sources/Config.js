@@ -2,7 +2,7 @@
  This file is temporal, this code should be in /src/config, but I can not make that files work.
  */
 
-import { ChainId } from '@kyberswap/ks-sdk-core';
+import {ChainId} from '@kyberswap/ks-sdk-core';
 import {Provider} from '@verified-network/verified-sdk';
 
 export const ENCRYPTION_KEY = process.env.REACT_APP_ENCRYPTION_KEY || '82b05784-f90c-442f-8f20-d24cd6f09e5a';

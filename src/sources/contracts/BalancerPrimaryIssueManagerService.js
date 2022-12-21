@@ -10,9 +10,8 @@ class BalancerPrimaryIssueManagerService extends ContractService {
   }
 
   offer(owned, isin, offered, tomatch, desired, min) {
-    return this.primaryIssueContract.offer(owned, isin, offered, tomatch, desired, min, this.userAddress)
+    return this.primaryIssueContract.offer(owned, isin, offered, tomatch, desired, min, this.userAddress);
   }
-
 }
 
 export default BalancerPrimaryIssueManagerService;

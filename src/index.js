@@ -2,7 +2,7 @@ import 'core-js/fn/object/assign';
 import React from 'react';
 import ReactDOM from 'react-dom';
 import App from './components/Main';
-import { ReactNotifications } from 'react-notifications-component';
+import {ReactNotifications} from 'react-notifications-component';
 import 'react-notifications-component/dist/theme.css';
 
 // Bootstrap 3 Commented for temporary purpose

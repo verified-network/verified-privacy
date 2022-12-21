@@ -14,7 +14,7 @@ class CashContractService extends ContractService {
 
   issueTokensWithFiat(debitAmount, currencyToDebit, currencyToIssue) {
     return paymentGateway.createCashIssueRequest(
-        this.getWallet().address, debitAmount, currencyToDebit.name, currencyToIssue.address
+      this.getWallet().address, debitAmount, currencyToDebit.name, currencyToIssue.address
     ).then((response) => {
       // this.transactionHooks.issueTokensWithFiat(debitAmount, currencyToDebit, currencyToIssue);
 
@@ -26,15 +26,15 @@ class CashContractService extends ContractService {
     const wallet = this.getWallet();
 
     return wallet
-        .sendTransaction({
-          to: tokenToIssue.address,
-          value: ethers.utils.parseEther(etherAmount),
-        })
-        .then((transactionResponse) => {
-          // this.transactionHooks.issueTokensWithEtherRequest(tokenToIssue, etherAmount);
+      .sendTransaction({
+        to: tokenToIssue.address,
+        value: ethers.utils.parseEther(etherAmount),
+      })
+      .then((transactionResponse) => {
+        // this.transactionHooks.issueTokensWithEtherRequest(tokenToIssue, etherAmount);
 
-          return transactionResponse;
-        });
+        return transactionResponse;
+      });
   }
 
   /**
@@ -49,11 +49,11 @@ class CashContractService extends ContractService {
     const cashContract = new CashContract(this.getWallet(), fromToken.address);
 
     return cashContract.transferFrom(this.userAddress, toToken.address, fromTokenAmount)
-        .then((transactionResponse) => {
-          // this.transactionHooks.exchangeTokens(fromToken, toToken, fromTokenAmount);
+      .then((transactionResponse) => {
+        // this.transactionHooks.exchangeTokens(fromToken, toToken, fromTokenAmount);
 
-          return Response.empty(transactionResponse);
-        });
+        return Response.empty(transactionResponse);
+      });
   }
 
   /**
@@ -68,11 +68,11 @@ class CashContractService extends ContractService {
     const cashContract = new CashContract(this.getWallet(), fromToken.address);
 
     return cashContract.transferFrom(this.getWallet().address, toAddress, amount)
-        .then((transactionResponse) => {
-          // this.transactionHooks.transferToAddress(fromToken, toAddress, amount);
+      .then((transactionResponse) => {
+        // this.transactionHooks.transferToAddress(fromToken, toAddress, amount);
 
-          return Response.empty(transactionResponse);
-        });
+        return Response.empty(transactionResponse);
+      });
   }
 
   /**
@@ -91,44 +91,44 @@ class CashContractService extends ContractService {
     const factoryContractService = new FactoryContractService(this.getPassword());
 
     return factoryContractService.getCashCounterPartByFiat(payCurrency)
-        .then((cashCurrency) => {
-          workerInstance.addPayInOfFiatCallEntry({amount, toAddress, payCurrency});
+      .then((cashCurrency) => {
+        workerInstance.addPayInOfFiatCallEntry({amount, toAddress, payCurrency});
 
-          return cashContract.payIn(amount, toAddress, cashCurrency.cashCounterPart);
-        })
-        .then((response) => {
-          return Response.empty(response);
-        });
+        return cashContract.payIn(amount, toAddress, cashCurrency.cashCounterPart);
+      })
+      .then((response) => {
+        return Response.empty(response);
+      });
   }
 
   repayLoan(currencyName, bondTokenAddress, amount) {
     const factoryContractService = new FactoryContractService(this.getPassword());
 
     return factoryContractService.getCashCurrencyByName(currencyName)
-        .then((cashCurrency) => {
-          const cashContract = new CashContract(this.getWallet(), cashCurrency.address);
+      .then((cashCurrency) => {
+        const cashContract = new CashContract(this.getWallet(), cashCurrency.address);
 
-          return cashContract.transferFrom(cashCurrency.address, bondTokenAddress, amount)
-              .then((response) => Response.empty(response));
-        });
+        return cashContract.transferFrom(cashCurrency.address, bondTokenAddress, amount)
+          .then((response) => Response.empty(response));
+      });
   }
 
   purchaseBond(debitCurrency, debitAmount, bondTokenAddress) {
     const cashContract = new CashContract(this.getWallet(), debitCurrency.address);
 
     return cashContract.transferFrom(this.getWallet().address, bondTokenAddress, debitAmount)
-        .then((response) => Response.empty(response));
+      .then((response) => Response.empty(response));
   }
 
   withdraw(fromToken, amount) {
     const cashContract = new CashContract(this.getWallet(), fromToken.address);
 
     return cashContract.transferFrom(this.getWallet().address, fromToken.address, amount)
-        .then((response) => {
-          // this.transactionHooks.withdraw(fromToken, amount);
+      .then((response) => {
+        // this.transactionHooks.withdraw(fromToken, amount);
 
-          return Response.empty(response);
-        });
+        return Response.empty(response);
+      });
   }
 
   notifyCashIssue(tokenAddress, callback) {
@@ -180,26 +180,26 @@ class CashContractService extends ContractService {
     const cashContract = new CashContract(this.getWallet(), token.address);
 
     return cashContract.balanceOf(this.userAddress)
-        .then((response) => {
-          return Response.value(response);
-        });
+      .then((response) => {
+        return Response.value(response);
+      });
   }
 
   allBalances() {
     const factoryContractService = new FactoryContractService(this.getPassword());
 
     return factoryContractService.getCashCurrencies()
-        .then((currencies) => {
-          const promises = currencies.map((currency) => {
-            return this.balanceOf(currency)
-                .then((balance) => {
-                  currency.balance = balance;
-                  return currency;
-                });
-          });
-
-          return Promise.all(promises);
+      .then((currencies) => {
+        const promises = currencies.map((currency) => {
+          return this.balanceOf(currency)
+            .then((balance) => {
+              currency.balance = balance;
+              return currency;
+            });
         });
+
+        return Promise.all(promises);
+      });
   }
 }
 

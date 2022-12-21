@@ -9,8 +9,8 @@ export default function AdminRoute({component: Component, ...rest}) {
     <Route
       {...rest}
       render={(props) => {
-        const normalUserComponent = (currentUser && !isAdmin) ? <Redirect to="/investor/pay"/> :
-          <Redirect to="/issuer/dashboard"/>;
+        const normalUserComponent = (currentUser && !isAdmin) ? <Redirect to="/issuer/dashboard"/> :
+          <Redirect to="/servicer/dashboard"/>;
 
         return currentUser && isAdmin ? <Component {...props} /> : normalUserComponent;
       }}

@@ -122,11 +122,11 @@ function _storeLoggedUsername(username) {
 }
 
 function storeAuthToken(token) {
-  return localStorage.setItem("token", token);
+  return localStorage.setItem('token', token);
 }
 
 function getAuthToken() {
- return localStorage.getItem("token");
+  return localStorage.getItem('token');
 }
 
 export default {

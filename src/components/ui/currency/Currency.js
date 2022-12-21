@@ -35,7 +35,7 @@ class Currency extends Component {
       this.props.onChange('');
       this.loadCurrencies();
     }
-    if(nextProps.selectedCurrency && nextProps.selectedCurrency !== this.props.selectedCurrency) {
+    if (nextProps.selectedCurrency && nextProps.selectedCurrency !== this.props.selectedCurrency) {
       this.setState({selectedCurrency: nextProps.selectedCurrency.name});
     }
   }

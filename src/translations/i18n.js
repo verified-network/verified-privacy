@@ -6,14 +6,14 @@ import {TRANSLATIONS_EN} from './en/translations';
 import {TRANSLATIONS_ES} from './es/translations';
 
 i18n
-    .use(LanguageDetector)
-    .use(initReactI18next)
-    .init({
-      resources: {
-        en: {translation: TRANSLATIONS_EN},
-        es: {translation: TRANSLATIONS_ES},
-      },
-    });
+  .use(LanguageDetector)
+  .use(initReactI18next)
+  .init({
+    resources: {
+      en: {translation: TRANSLATIONS_EN},
+      es: {translation: TRANSLATIONS_ES},
+    },
+  });
 
 i18n.changeLanguage('en');
 

@@ -5,27 +5,27 @@ import PasswordStore from 'components/layouts/Common/PasswordStore';
 import Loader from 'components/ui/Loader';
 import VerticallyModal from 'components/ui/modal/VerticallyModal';
 import notifier from 'components/ui/notifier';
-import React, { Component } from 'react';
-import { withRouter } from 'react-router-dom';
-import { Button, Form, Nav, Navbar, NavDropdown } from 'react-bootstrap';
-import { LinkContainer } from 'react-router-bootstrap';
+import React, {Component} from 'react';
+import {withRouter} from 'react-router-dom';
+import {Button, Form, Nav, Navbar, NavDropdown} from 'react-bootstrap';
+import {LinkContainer} from 'react-router-bootstrap';
 import ClientContractService from 'sources/contracts/ClientContractService';
 import LocalCache from 'sources/utils/LocalCache';
 import Notification from '../../ui/notification/Notification';
-import { MESSAGES } from 'sources/messages';
+import {MESSAGES} from 'sources/messages';
 import AuthApi from 'sources/api/Auth';
-import PasswordModal, { PasswordModalMode } from 'components/layouts/Common/PasswordModal';
-import EventsContractService, { EventType } from 'sources/contracts/EventsContractService';
+import PasswordModal, {PasswordModalMode} from 'components/layouts/Common/PasswordModal';
+import EventsContractService, {EventType} from 'sources/contracts/EventsContractService';
 import LocalSessionManager from 'sources/utils/LocalSessionManager';
-import WalletModal, { WalletModalMode } from 'components/layouts/Investor/WalletModal';
-import KycContractService, { KycStatus } from 'sources/contracts/KycContractService';
+import WalletModal, {WalletModalMode} from 'components/layouts/Issuer/WalletModal';
+import KycContractService, {KycStatus} from 'sources/contracts/KycContractService';
 import KycSubmit from 'components/layouts/Common/KycSubmit';
-import { withTranslation } from 'react-i18next';
+import {withTranslation} from 'react-i18next';
 import workerInstance from 'sources/worker/WorkerInstance';
 import logo from '../../../assets/images/logo/verified_logo_white.svg';
 import Encryption from 'sources/utils/Encryption';
-import { ENCRYPTION_KEY, WEBSITE_URL } from '../../../sources/Config';
-import { usePushNotification } from '../../../notifications/notificationsHandler';
+import {ENCRYPTION_KEY, WEBSITE_URL} from '../../../sources/Config';
+import {usePushNotification} from '../../../notifications/notificationsHandler';
 import initialTransactionsManager from 'sources/utils/InitialTransactionsManager';
 
 class CommonHeader extends Component {
@@ -74,8 +74,8 @@ class CommonHeader extends Component {
   loginUser = () => {
     this.startLoading();
     const query = window.location.search;
-    let token = "";
-    if (query && query.includes("access_token")) {
+    let token = '';
+    if (query && query.includes('access_token')) {
       token = this.getTokenFromUrl();
     } else {
       token = LocalSessionManager.getAuthToken();
@@ -96,7 +96,7 @@ class CommonHeader extends Component {
         } else {
           this.processLoggedUser();
         }
-        console.log("Error getLoggedUser", { error, response: error.response.status });
+        console.log('Error getLoggedUser', {error, response: error.response.status});
         notifier.error('Error', 'Error in login ' + error);
         // location.replace('/'); //Fixme: Uncomment it, it is just for testing
       })
@@ -106,10 +106,10 @@ class CommonHeader extends Component {
   }
 
   getTokenFromUrl = () => {
-    let token = "";
+    let token = '';
     try {
       const query = window.location.search;
-      const splitArr = query.split("?access_token=")
+      const splitArr = query.split('?access_token=');
       if (splitArr[1]) {
         const accessToken = splitArr[1];
         token = Encryption.decryptString(accessToken, ENCRYPTION_KEY);
@@ -151,7 +151,7 @@ class CommonHeader extends Component {
       clientContract.isUserIssuer().then((isUserIssuer) => {
         sessionStorage.setItem('isDashboardVisited', true);
 
-        const currentRole = isUserIssuer ? 'investor' : 'investor';
+        const currentRole = isUserIssuer ? 'issuer' : 'issuer';
 
         if (isUserIssuer) {
           sessionStorage.setItem('isAdmin', true);
@@ -189,9 +189,9 @@ class CommonHeader extends Component {
               this.props.storeFcmToken(password);
             }
             if (isKycNotSubmitted) {
-              this.setState({ kycNotSubmitted: true });
+              this.setState({kycNotSubmitted: true});
             } else if (status === KycStatus.PENDING_FOR_APPROVAL) {
-              this.setState({ kycPendingForApproval: true });
+              this.setState({kycPendingForApproval: true});
             } else {
               if (this.props.finishSetup) {
                 this.props.finishSetup();
@@ -226,11 +226,11 @@ class CommonHeader extends Component {
   }
 
   startLoading() {
-    this.setState({ loading: true });
+    this.setState({loading: true});
   }
 
   finishLoading() {
-    this.setState({ loading: false });
+    this.setState({loading: false});
   }
 
   handleLogoutClick = (from) => {
@@ -293,7 +293,7 @@ class CommonHeader extends Component {
   };
 
   handleWalletModalHide = () => {
-    this.setState({ walletModalVisibility: false });
+    this.setState({walletModalVisibility: false});
   }
 
   render() {
@@ -302,10 +302,10 @@ class CommonHeader extends Component {
       kycNotSubmitted,
     } = this.state;
 
-    const { navItems, role } = this.props;
+    const {navItems, role} = this.props;
 
     return (
-      <header className="bg" style={{ height: '75px' }}>
+      <header className="bg" style={{height: '75px'}}>
         {loading ? <Loader /> : ''}
         <Navbar expand="lg">
           <LinkContainer to={`/${role}/dashboard`}>
@@ -372,7 +372,7 @@ class CommonHeader extends Component {
 
 const CommonHeaderComponent = (props) => {
   const pushNotification = usePushNotification();
-  return <CommonHeader {...props} {...pushNotification} />
-}
+  return <CommonHeader {...props} {...pushNotification} />;
+};
 
 export default withTranslation()(withRouter(CommonHeaderComponent));

@@ -13,16 +13,16 @@ function getGatewayName(userAddress) {
   const axios = Axios.getInstance();
 
   return axios
-      .get(config.paymentGatewayUrl, {
-        params: {
-          'action': 'get_gateway_name',
-          'user_address': userAddress,
-        },
-      })
-      .then((response) => {
-        return response.data.gateway_name;
-      })
-      .catch((e) => handleError(e));
+    .get(config.paymentGatewayUrl, {
+      params: {
+        'action': 'get_gateway_name',
+        'user_address': userAddress,
+      },
+    })
+    .then((response) => {
+      return response.data.gateway_name;
+    })
+    .catch((e) => handleError(e));
 }
 
 /**
@@ -36,17 +36,17 @@ function createAccount(userAddress, userData = {}) {
   const axios = Axios.getInstance();
 
   return axios
-      .get(config.paymentGatewayUrl, {
-        params: {
-          'action': 'create_account',
-          'user_address': userAddress,
-          'user_data': userData,
-        },
-      })
-      .then(() => {
-        return null;
-      })
-      .catch((e) => handleError(e));
+    .get(config.paymentGatewayUrl, {
+      params: {
+        'action': 'create_account',
+        'user_address': userAddress,
+        'user_data': userData,
+      },
+    })
+    .then(() => {
+      return null;
+    })
+    .catch((e) => handleError(e));
 }
 
 /**
@@ -58,16 +58,16 @@ function createAccountLink(userAddress) {
   const axios = Axios.getInstance();
 
   return axios
-      .get(config.paymentGatewayUrl, {
-        params: {
-          action: 'create_link',
-          user_address: userAddress,
-          return_url: config.stripe.accountLinkReturnUrl,
-          refresh_url: config.stripe.accountLinkRefreshUrl,
-        },
-      })
-      .then((response) => response.data.url)
-      .catch((e) => handleError(e));
+    .get(config.paymentGatewayUrl, {
+      params: {
+        action: 'create_link',
+        user_address: userAddress,
+        return_url: config.stripe.accountLinkReturnUrl,
+        refresh_url: config.stripe.accountLinkRefreshUrl,
+      },
+    })
+    .then((response) => response.data.url)
+    .catch((e) => handleError(e));
 }
 
 /**
@@ -80,16 +80,16 @@ function isKycAccepted(userAddress) {
   const axios = Axios.getInstance();
 
   return axios
-      .get(config.paymentGatewayUrl, {
-        params: {
-          action: 'get_account',
-          user_address: userAddress,
-        },
-      })
-      .then((response) => response.data.kyc_accepted)
-      .catch((ignored) => {
-        return false;
-      });
+    .get(config.paymentGatewayUrl, {
+      params: {
+        action: 'get_account',
+        user_address: userAddress,
+      },
+    })
+    .then((response) => response.data.kyc_accepted)
+    .catch((ignored) => {
+      return false;
+    });
 }
 
 /**
@@ -108,15 +108,15 @@ function createCashIssueRequest(investorAddress, amount, payCurrency, issueCurre
   const axios = Axios.getInstance();
 
   return axios
-      .post(config.paymentGatewayUrl, {
-        action: 'create_cash_issue_request',
-        amount,
-        investor_address: investorAddress,
-        pay_currency: payCurrency,
-        issue_currency: issueCurrency,
-      })
-      .then((response) => response.data)
-      .catch((e) => handleError(e));
+    .post(config.paymentGatewayUrl, {
+      action: 'create_cash_issue_request',
+      amount,
+      investor_address: investorAddress,
+      pay_currency: payCurrency,
+      issue_currency: issueCurrency,
+    })
+    .then((response) => response.data)
+    .catch((e) => handleError(e));
 }
 
 /**
@@ -133,29 +133,29 @@ function listCashIssueRequests(issuerAddress) {
   const axios = Axios.getInstance();
 
   return axios
-      .get(config.paymentGatewayUrl, {
-        params: {
-          action: 'list_cash_issue_requests',
-          issuer_address: issuerAddress,
-        },
-      })
-      .then((response) => response.data)
-      .catch((e) => handleError(e));
+    .get(config.paymentGatewayUrl, {
+      params: {
+        action: 'list_cash_issue_requests',
+        issuer_address: issuerAddress,
+      },
+    })
+    .then((response) => response.data)
+    .catch((e) => handleError(e));
 }
 
 function getCashIssueRequest(issuerAddress, paymentRef) {
   const axios = Axios.getInstance();
 
   return axios
-      .get(config.paymentGatewayUrl, {
-        params: {
-          action: 'get_withdraw_request',
-          payment_id: paymentRef,
-          issuer_address: issuerAddress,
-        },
-      })
-      .then((response) => response.data)
-      .catch((e) => handleError(e));
+    .get(config.paymentGatewayUrl, {
+      params: {
+        action: 'get_withdraw_request',
+        payment_id: paymentRef,
+        issuer_address: issuerAddress,
+      },
+    })
+    .then((response) => response.data)
+    .catch((e) => handleError(e));
 }
 
 /**
@@ -169,15 +169,15 @@ function confirmCashIssueRequest(issuerAddress, paymentRef) {
   const axios = Axios.getInstance();
 
   return axios
-      .get(config.paymentGatewayUrl, {
-        params: {
-          action: 'confirm_cash_issue_request',
-          payment_id: paymentRef,
-          issuer_address: issuerAddress,
-        },
-      })
-      .then(() => null)
-      .catch((e) => handleError(e));
+    .get(config.paymentGatewayUrl, {
+      params: {
+        action: 'confirm_cash_issue_request',
+        payment_id: paymentRef,
+        issuer_address: issuerAddress,
+      },
+    })
+    .then(() => null)
+    .catch((e) => handleError(e));
 }
 
 /**
@@ -191,15 +191,15 @@ function rejectCashIssueRequest(issuerAddress, paymentRef) {
   const axios = Axios.getInstance();
 
   return axios
-      .get(config.paymentGatewayUrl, {
-        params: {
-          action: 'reject_cash_issue_request',
-          payment_id: paymentRef,
-          issuer_address: issuerAddress,
-        },
-      })
-      .then((response) => response.data)
-      .catch((e) => handleError(e));
+    .get(config.paymentGatewayUrl, {
+      params: {
+        action: 'reject_cash_issue_request',
+        payment_id: paymentRef,
+        issuer_address: issuerAddress,
+      },
+    })
+    .then((response) => response.data)
+    .catch((e) => handleError(e));
 }
 
 /**
@@ -215,14 +215,14 @@ function listWithdrawRequests(issuerAddress) {
   const axios = Axios.getInstance();
 
   return axios
-      .get(config.paymentGatewayUrl, {
-        params: {
-          action: 'list_withdraw_requests',
-          issuer_address: issuerAddress,
-        },
-      })
-      .then((response) => response.data)
-      .catch((e) => handleError(e));
+    .get(config.paymentGatewayUrl, {
+      params: {
+        action: 'list_withdraw_requests',
+        issuer_address: issuerAddress,
+      },
+    })
+    .then((response) => response.data)
+    .catch((e) => handleError(e));
 }
 
 /**
@@ -239,15 +239,15 @@ function getWithdrawRequest(issuerAddress, paymentRef) {
   const axios = Axios.getInstance();
 
   return axios
-      .get(config.paymentGatewayUrl, {
-        params: {
-          action: 'get_withdraw_request',
-          payment_id: paymentRef,
-          issuer_address: issuerAddress,
-        },
-      })
-      .then((response) => response.data)
-      .catch((e) => handleError(e));
+    .get(config.paymentGatewayUrl, {
+      params: {
+        action: 'get_withdraw_request',
+        payment_id: paymentRef,
+        issuer_address: issuerAddress,
+      },
+    })
+    .then((response) => response.data)
+    .catch((e) => handleError(e));
 }
 
 /**
@@ -264,15 +264,15 @@ function createKycPayment(userAddress, userCountry) {
   const axios = Axios.getInstance();
 
   return axios
-      .get(config.paymentGatewayUrl, {
-        params: {
-          action: 'create_kyc_payment',
-          user_address: userAddress,
-          user_country: userCountry,
-        },
-      })
-      .then((response) => response.data)
-      .catch((e) => handleError(e));
+    .get(config.paymentGatewayUrl, {
+      params: {
+        action: 'create_kyc_payment',
+        user_address: userAddress,
+        user_country: userCountry,
+      },
+    })
+    .then((response) => response.data)
+    .catch((e) => handleError(e));
 }
 
 /**
@@ -285,14 +285,14 @@ function getKycPaymentStatus(userAddress) {
   const axios = Axios.getInstance();
 
   return axios
-      .get(config.paymentGatewayUrl, {
-        params: {
-          action: 'get_kyc_payment',
-          user_address: userAddress,
-        },
-      })
-      .then((response) => response.data.status === SUCCESS_PAYMENT)
-      .catch((e) => handleError(e));
+    .get(config.paymentGatewayUrl, {
+      params: {
+        action: 'get_kyc_payment',
+        user_address: userAddress,
+      },
+    })
+    .then((response) => response.data.status === SUCCESS_PAYMENT)
+    .catch((e) => handleError(e));
 }
 
 /**
@@ -305,14 +305,14 @@ function successKycPaymentWithInviteFriends(userAddress) {
   const axios = Axios.getInstance();
 
   return axios
-      .get(config.paymentGatewayUrl, {
-        params: {
-          action: 'success_kyc_payment',
-          user_address: userAddress,
-        },
-      })
-      .then(() => null)
-      .catch((e) => handleError(e));
+    .get(config.paymentGatewayUrl, {
+      params: {
+        action: 'success_kyc_payment',
+        user_address: userAddress,
+      },
+    })
+    .then(() => null)
+    .catch((e) => handleError(e));
 }
 
 function handleError(e) {

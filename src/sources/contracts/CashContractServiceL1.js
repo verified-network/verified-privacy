@@ -17,14 +17,14 @@ class CashContractServiceL1 extends ContractServiceL1 {
     const cashInvestor = new VerifiedCash(wallet, tokenToIssue.address);
 
     return wallet
-        .sendTransaction({
-          to: tokenToIssue.address,
-          value: ethers.utils.parseEther(etherAmount),
-        })
-        .then(() => cashInvestor.requestIssue(ethaddress, ethers.utils.parseEther(etherAmount), wallet.address))
-        .then((transactionResponse) => {
-          return Response.empty(transactionResponse);
-        });
+      .sendTransaction({
+        to: tokenToIssue.address,
+        value: ethers.utils.parseEther(etherAmount),
+      })
+      .then(() => cashInvestor.requestIssue(ethaddress, ethers.utils.parseEther(etherAmount), wallet.address))
+      .then((transactionResponse) => {
+        return Response.empty(transactionResponse);
+      });
   }
 }
 

@@ -1,7 +1,7 @@
-import { VerifiedBond } from '@verified-network/verified-sdk';
-import { ethaddress } from './CashContractServiceL1';
+import {VerifiedBond} from '@verified-network/verified-sdk';
+import {ethaddress} from './CashContractServiceL1';
 import ContractServiceL1 from './ContractServiceL1';
-import { ethers } from 'ethers';
+import {ethers} from 'ethers';
 
 class BondContractServiceL1 extends ContractServiceL1 {
   constructor(password) {

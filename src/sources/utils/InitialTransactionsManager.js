@@ -23,15 +23,15 @@ function consume() {
     const current = top();
 
     current()
-        .then(() => {
-          dequeue();
-          consume();
-        })
-        .catch((e) => {
-          console.log('Initial transaction fail: ', current, e);
-          dequeue();
-          consume();
-        });
+      .then(() => {
+        dequeue();
+        consume();
+      })
+      .catch((e) => {
+        console.log('Initial transaction fail: ', current, e);
+        dequeue();
+        consume();
+      });
   } else {
     started = false;
   }

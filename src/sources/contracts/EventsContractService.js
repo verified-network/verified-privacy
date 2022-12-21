@@ -27,28 +27,28 @@ class EventsContractService extends ContractService {
       for (const currency of currencies) {
         cashContractService.notifyCashIssue(currency, (event) => {
           Response.array(event)
-              .then((eventData) => {
-                const address = eventData[0];
-                const currency = eventData[1];
-                const amount = eventData[2];
+            .then((eventData) => {
+              const address = eventData[0];
+              const currency = eventData[1];
+              const amount = eventData[2];
 
-                if (address === this.getWallet().address) {
-                  const eventObject = {
-                    type: EventType.CASH_ISSUE,
-                    data: {
-                      currency,
-                      amount,
-                    },
-                  };
+              if (address === this.getWallet().address) {
+                const eventObject = {
+                  type: EventType.CASH_ISSUE,
+                  data: {
+                    currency,
+                    amount,
+                  },
+                };
 
-                  callback(eventObject);
-                }
-              })
-              .catch((error) => {
-                // Just ignore this error
-                // eslint-disable-next-line no-console
-                console.error('Error on event: ', error);
-              });
+                callback(eventObject);
+              }
+            })
+            .catch((error) => {
+              // Just ignore this error
+              // eslint-disable-next-line no-console
+              console.error('Error on event: ', error);
+            });
         });
       }
     });

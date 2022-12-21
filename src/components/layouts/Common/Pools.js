@@ -1,6 +1,6 @@
 import 'bootstrap-daterangepicker/daterangepicker.css';
 import React from 'react';
-import { Row } from 'react-bootstrap';
+import {Row} from 'react-bootstrap';
 import Loader from '../../ui/Loader';
 import notifier from 'components/ui/notifier';
 import PasswordStore from 'components/layouts/Common/PasswordStore';
@@ -28,7 +28,7 @@ class Pools extends React.Component {
     this.context.getPassword().then((password) => {
       const kycContract = new KycContractService(password);
 
-      this.setState({ loading: true });
+      this.setState({loading: true});
 
       kycContract.getCountry().then((userCountry) => {
         countryApi.list().then((countries) => {
@@ -40,7 +40,7 @@ class Pools extends React.Component {
             selectedCurrency: FactoryContractService.getCashCurrencyNameByFiatName(userCurrency),
           });
         }).finally(() => {
-          this.setState({ loading: false });
+          this.setState({loading: false});
           this.loadCashData();
         });
       });
@@ -51,7 +51,7 @@ class Pools extends React.Component {
     return this.context.getPassword().then((password) => {
       const cashContract = new CashContractService(password);
 
-      this.setState({ loading: true });
+      this.setState({loading: true});
 
       cashContract.allBalances()
         .then((balances) => {
@@ -73,13 +73,13 @@ class Pools extends React.Component {
           notifier.error('Error', 'Error loading cash balances ' + error.toString());
         })
         .finally(() => {
-          this.setState({ loading: false });
+          this.setState({loading: false});
         });
     });
   };
 
   render() {
-    const { loading, cashData } = this.state;
+    const {loading, cashData} = this.state;
 
     const items = cashData.map((item) => {
       return {

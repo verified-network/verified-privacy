@@ -16,10 +16,10 @@ const PushNotificationProvider = (props) => {
 
   const addPushNotificationListener = () => {
     onMessageListener()
-        .then((payload) => {
-          notifier.info(payload.notification.title, payload.notification.body);
-        })
-        .catch((err) => console.log('failed: ', err));
+      .then((payload) => {
+        notifier.info(payload.notification.title, payload.notification.body);
+      })
+      .catch((err) => console.log('failed: ', err));
   };
 
   const storeFcmToken = (password) => {

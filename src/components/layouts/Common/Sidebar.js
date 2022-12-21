@@ -1,6 +1,6 @@
 import React from 'react';
-import { FaBars } from 'react-icons/fa';
-import InvestorSidebarMenu from '../Investor/SidebarMenu';
+import {FaBars} from 'react-icons/fa';
+import IssuerSidebarMenu from '../Issuer/SidebarMenu';
 
 class Sidebar extends React.Component {
   constructor() {
@@ -12,14 +12,14 @@ class Sidebar extends React.Component {
   }
 
   handleToggleSidebar = (value) => {
-    this.setState({ toggled: value });
+    this.setState({toggled: value});
   };
 
   render() {
-    const { toggled, collapsed } = this.state;
-    const { group, role } = this.props;
+    const {toggled, collapsed} = this.state;
+    const {group, role} = this.props;
 
-    const SidebarMenu = group === 'investor' ? InvestorSidebarMenu : InvestorSidebarMenu;
+    const SidebarMenu = group === 'issuer' ? IssuerSidebarMenu : IssuerSidebarMenu;
 
     return (
       <>
@@ -31,7 +31,7 @@ class Sidebar extends React.Component {
             role={role}
           />
 
-          <main style={{ padding: '0px 5% 0px 5%', overflow: 'auto' }} className='w-100 mb-5'>
+          <main style={{padding: '0px 5% 0px 5%', overflow: 'auto'}} className='w-100 mb-5'>
             <div className="btn-toggle mt-2" onClick={() => this.handleToggleSidebar(true)}>
               <FaBars />
             </div>

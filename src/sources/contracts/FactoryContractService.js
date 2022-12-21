@@ -133,7 +133,7 @@ class FactoryContractService {
               const name = Response.parseBytes32Value(result[0]);
               const type = Response.parseBytes32Value(result[1]);
 
-              return { address, name, type };
+              return {address, name, type};
             });
         });
 

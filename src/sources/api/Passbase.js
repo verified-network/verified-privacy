@@ -5,7 +5,7 @@ function getEncryptedMetadata(address) {
   const axios = Axios.getInstance();
 
   return axios.get(Config.passbaseMetadataUrl, {params: {address}})
-      .then((response) => response.data);
+    .then((response) => response.data);
 }
 
 export default {getEncryptedMetadata};

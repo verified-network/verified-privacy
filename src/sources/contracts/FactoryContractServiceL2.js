@@ -1,4 +1,4 @@
-import { FactoryContract } from '@verified-network/verified-sdk';
+import {FactoryContract} from '@verified-network/verified-sdk';
 import ContractService from 'sources/contracts/ContractService';
 import FactoryContractService from './FactoryContractService';
 

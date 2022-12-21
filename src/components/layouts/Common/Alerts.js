@@ -34,61 +34,61 @@ class Alerts extends React.Component {
 
   handleGatewayKyc = () => {
     this.context.getPassword()
-        .then((password) => {
-          this.setState({loading: true});
-          const clientContractService = new ClientContractService(password);
-          const userAddress = clientContractService.getWallet().address;
+      .then((password) => {
+        this.setState({loading: true});
+        const clientContractService = new ClientContractService(password);
+        const userAddress = clientContractService.getWallet().address;
 
-          return paymentGateway.getGatewayName(userAddress).then((gatewayName) => {
-            this.setState({
-              paymentGatewayName: gatewayName,
-              gatewayKycModalVisibility: true,
-            });
+        return paymentGateway.getGatewayName(userAddress).then((gatewayName) => {
+          this.setState({
+            paymentGatewayName: gatewayName,
+            gatewayKycModalVisibility: true,
           });
-        })
-        .catch((error) => {
-          notifier.error('Error', error.toString());
-        })
-        .finally(() => {
-          this.setState({loading: false});
         });
+      })
+      .catch((error) => {
+        notifier.error('Error', error.toString());
+      })
+      .finally(() => {
+        this.setState({loading: false});
+      });
   };
 
   checkGatewayKyc = () => {
     this.context.getPassword()
-        .then((password) => {
-          this.setState({loading: true});
+      .then((password) => {
+        this.setState({loading: true});
 
-          const clientContractService = new ClientContractService(password);
+        const clientContractService = new ClientContractService(password);
 
-          paymentGateway.isKycAccepted(clientContractService.getWallet().address)
-              .then((isKycAccepted) => {
-                this.setState({gatewayAlertVisibility: !isKycAccepted});
-              });
-        })
-        .catch((error) => {
-          notifier.error('Error', error.toString());
-        })
-        .finally(() => {
-          this.setState({loading: false});
-        });
+        paymentGateway.isKycAccepted(clientContractService.getWallet().address)
+          .then((isKycAccepted) => {
+            this.setState({gatewayAlertVisibility: !isKycAccepted});
+          });
+      })
+      .catch((error) => {
+        notifier.error('Error', error.toString());
+      })
+      .finally(() => {
+        this.setState({loading: false});
+      });
   }
 
   loadLiquidityBalance = () => {
     this.context.getPassword()
-        .then((password) => {
-          this.setState({loading: true});
+      .then((password) => {
+        this.setState({loading: true});
 
-          const liquidityContract = new LiquidityContractService(password);
+        const liquidityContract = new LiquidityContractService(password);
 
-          liquidityContract.balanceOf()
-              .then((liquidityBalance) => {
-                this.setState({liquidityBalance});
-              });
-        })
-        .finally(() => {
-          this.setState({loading: false});
-        });
+        liquidityContract.balanceOf()
+          .then((liquidityBalance) => {
+            this.setState({liquidityBalance});
+          });
+      })
+      .finally(() => {
+        this.setState({loading: false});
+      });
   }
 
   handleGatewayAlertClose = () => {

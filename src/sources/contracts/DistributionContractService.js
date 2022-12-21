@@ -11,18 +11,18 @@ class DistributionContractService extends ContractService {
 
   getPaymentFeeCollected(currencyName) {
     return this.distributionContract.getPaymentFeeCollected(currencyName)
-        .then((response) => {
-          return Response.value(response);
-        })
-        .then((response) => response.toString());
+      .then((response) => {
+        return Response.value(response);
+      })
+      .then((response) => response.toString());
   }
 
   getLoanFeeCollected(currencyName) {
     return this.distributionContract.getLoanFeeCollected(currencyName)
-        .then((response) => {
-          return Response.value(response);
-        })
-        .then((response) => response.toString());
+      .then((response) => {
+        return Response.value(response);
+      })
+      .then((response) => response.toString());
   }
 
   getFeeCollected(currencyName) {
@@ -30,37 +30,37 @@ class DistributionContractService extends ContractService {
     const loanPromise = this.getLoanFeeCollected(currencyName);
 
     return Promise.all([paymentPromise, loanPromise])
-        .then((result) => {
-          return {
-            payment: result[0],
-            loan: result[1],
-          };
-        });
+      .then((result) => {
+        return {
+          payment: result[0],
+          loan: result[1],
+        };
+      });
   }
 
   shareFeeCollected() {
     return this.distributionContract.shareFee()
-        .then((response) => Response.empty(response));
+      .then((response) => Response.empty(response));
   }
 
   addRevenueShareholder(type, shareholderAddress, currencyName) {
     return this.distributionContract.addRevenueShareholder(type, shareholderAddress, currencyName)
-        .then((response) => Response.empty(response));
+      .then((response) => Response.empty(response));
   }
 
   getRevenueShareholders(type, currencyName) {
     return this.distributionContract.getRevenueShareholders(type, currencyName)
-        .then((response) => {
-          return response;
-        })
-        .then((response) => Response.array(response))
-        .then((response) => {
-          return {
-            address: response[0],
-            type,
-            currencyName,
-          };
-        });
+      .then((response) => {
+        return response;
+      })
+      .then((response) => Response.array(response))
+      .then((response) => {
+        return {
+          address: response[0],
+          type,
+          currencyName,
+        };
+      });
   }
 }
 

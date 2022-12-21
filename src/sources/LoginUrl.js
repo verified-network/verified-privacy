@@ -12,8 +12,8 @@ const IdentityProvider = {
  * @return {String} Login url
  */
 function buildLoginUrl(identityProvider) {
-  console.log("process.env.REACT_APP_STRAPI_BASE_URL", process.env.REACT_APP_STRAPI_BASE_URL)
-  return `${process.env.REACT_APP_STRAPI_BASE_URL || "https://cms.verified.network"}/api/connect/${identityProvider}`;
+  console.log('process.env.REACT_APP_STRAPI_BASE_URL', process.env.REACT_APP_STRAPI_BASE_URL);
+  return `${process.env.REACT_APP_STRAPI_BASE_URL || 'https://cms.verified.network'}/api/connect/${identityProvider}`;
 }
 
 export {IdentityProvider, buildLoginUrl};

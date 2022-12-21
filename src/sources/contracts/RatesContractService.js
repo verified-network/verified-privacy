@@ -18,32 +18,32 @@ class RatesContractService extends ContractService {
 
   setFeeTo(target, fee, feeType) {
     return this.ratesContract
-        .setFeeTo(target, fee, feeType)
-        .then((response) => Response.empty(response));
+      .setFeeTo(target, fee, feeType)
+      .then((response) => Response.empty(response));
   }
 
   getMargin(assetName) {
     return this.ratesContract
-        .getMargin(assetName)
-        .then((response) => Response.value(response));
+      .getMargin(assetName)
+      .then((response) => Response.value(response));
   }
 
   setMargin(margin, assetName) {
     return this.ratesContract
-        .setMargin(margin, assetName)
-        .then((response) => Response.empty(response));
+      .setMargin(margin, assetName)
+      .then((response) => Response.empty(response));
   }
 
   getFeeToSetter() {
     return this.ratesContract
-        .getFeeToSetter()
-        .then((response) => Response.value(response));
+      .getFeeToSetter()
+      .then((response) => Response.value(response));
   }
 
   setFeeToSetter(address) {
     return this.ratesContract
-        .setFeeToSetter(address)
-        .then((response) => Response.empty(response));
+      .setFeeToSetter(address)
+      .then((response) => Response.empty(response));
   }
 }
 

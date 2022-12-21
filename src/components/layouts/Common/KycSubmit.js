@@ -6,7 +6,6 @@ import paymentGateway from 'sources/api/PaymentGateway';
 import PasswordStore from 'components/layouts/Common/PasswordStore';
 import ClientContractService from 'sources/contracts/ClientContractService';
 import Loader from 'components/ui/Loader';
-import PaymentModal from 'components/layouts/Common/Payments/PaymentModal';
 import notifier from 'components/ui/notifier';
 import VerifyButton, {start} from '@passbase/button/react';
 import Config from 'sources/Config';
@@ -40,13 +39,13 @@ class KycSubmit extends React.Component {
       const clientContract = new ClientContractService(password);
 
       paymentGateway
-          .getKycPaymentStatus(clientContract.getWallet().address)
-          .then((status) => {
-            this.setState({kycFeePayed: status});
-          })
-          .finally(() => {
-            this.setState({loading: false});
-          });
+        .getKycPaymentStatus(clientContract.getWallet().address)
+        .then((status) => {
+          this.setState({kycFeePayed: status});
+        })
+        .finally(() => {
+          this.setState({loading: false});
+        });
     });
   }
 
@@ -64,21 +63,21 @@ class KycSubmit extends React.Component {
       const userAddress = clientContract.getWallet().address;
 
       paymentGateway
-          .createKycPayment(userAddress, country)
-          .then((paymentRequest) => {
-            if (paymentRequest.status !== paymentGateway.SUCCESS_PAYMENT) {
-              this.setState({
-                paymentModalVisibility: true,
-                paymentRequest,
-              });
-            }
-          })
-          .catch((e) => {
-            notifier.error('Error', e.toString());
-          })
-          .finally(() => {
-            this.setState({loading: false});
-          });
+        .createKycPayment(userAddress, country)
+        .then((paymentRequest) => {
+          if (paymentRequest.status !== paymentGateway.SUCCESS_PAYMENT) {
+            this.setState({
+              paymentModalVisibility: true,
+              paymentRequest,
+            });
+          }
+        })
+        .catch((e) => {
+          notifier.error('Error', e.toString());
+        })
+        .finally(() => {
+          this.setState({loading: false});
+        });
     });
   }
 
@@ -90,30 +89,30 @@ class KycSubmit extends React.Component {
       const userAddress = clientContract.getWallet().address;
 
       passbaseApi
-          .getEncryptedMetadata(userAddress)
-          .then((metadata) => {
-            this.setState({
-              passbaseMetadata: metadata,
-              loading: true,
-            });
-
-            // In passbase docs they do it in this way (with the setTimeout)
-            setTimeout(() => {
-              start();
-
-              this.setState({
-                loading: false,
-              });
-            }, 5000);
-          })
-          .catch((e) => {
-            notifier.error('Error', e.toString());
-          })
-          .finally(() => {
-            setTimeout(() => {
-              this.setState({loading: false});
-            }, 7000);
+        .getEncryptedMetadata(userAddress)
+        .then((metadata) => {
+          this.setState({
+            passbaseMetadata: metadata,
+            loading: true,
           });
+
+          // In passbase docs they do it in this way (with the setTimeout)
+          setTimeout(() => {
+            start();
+
+            this.setState({
+              loading: false,
+            });
+          }, 5000);
+        })
+        .catch((e) => {
+          notifier.error('Error', e.toString());
+        })
+        .finally(() => {
+          setTimeout(() => {
+            this.setState({loading: false});
+          }, 7000);
+        });
     });
   }
 
@@ -189,11 +188,6 @@ class KycSubmit extends React.Component {
 
           {kycFeeMessage}
         </VerticallyModal>
-
-        <PaymentModal show={paymentModalVisibility} onHide={this.handlePaymentModalHide}
-          paymentRequest={paymentRequest}
-          onPaymentStatusChange={this.handlePaymentStatusChange}
-        />
 
         <VerifyButton apiKey={Config.passbaseApiKey} onSubmitted={this.handlePassbaseSubmitted} hidden='true'
           metaData={passbaseMetadata} key={passbaseMetadata}

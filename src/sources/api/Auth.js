@@ -7,14 +7,14 @@ function getLoggedUser(token) {
   } : {};
 
   return axios
-      .get(config.authenticatedUserUrl, {headers})
-      .then((response) => response.data);
+    .get(config.authenticatedUserUrl, {headers})
+    .then((response) => response.data);
 }
 
 function logout() {
   return axios
-      .get(config.logoutUrl, {withCredentials: true})
-      .then((response) => response.data);
+    .get(config.logoutUrl, {withCredentials: true})
+    .then((response) => response.data);
 }
 
 export default {getLoggedUser, logout};

@@ -10,9 +10,8 @@ class BalancerSecondaryIssueManagerService extends ContractService {
   }
 
   issueSecondary(security, currency, amount, isin) {
-    return this.primaryIssueContract.issueSecondary(security, currency, amount, isin)
+    return this.primaryIssueContract.issueSecondary(security, currency, amount, isin);
   }
-
 }
 
 export default BalancerSecondaryIssueManagerService;

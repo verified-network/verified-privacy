@@ -5,7 +5,7 @@ function list() {
   const axios = Axios.getInstance();
 
   return axios.get(config.listCountryApi)
-      .then((response) => response.data);
+    .then((response) => response.data);
 }
 
 export default {list};

@@ -124,16 +124,16 @@ function fetchOrders(userAddress, limit = 20, skip = 0) {
 
 function executeQuery(query, variables = {}) {
   return client
-      .query({
-        query: gql(query),
-        variables: variables,
-      })
-      .then((response) => {
-        return response.data;
-      })
-      .catch((exception) => {
-        return _handleException(exception);
-      });
+    .query({
+      query: gql(query),
+      variables: variables,
+    })
+    .then((response) => {
+      return response.data;
+    })
+    .catch((exception) => {
+      return _handleException(exception);
+    });
 }
 
 function _handleException(exception) {
