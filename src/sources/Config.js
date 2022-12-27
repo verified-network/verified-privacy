@@ -26,7 +26,6 @@ const NETWORKS = {
 
 export const KYBER_NETWORK_CHAIN_ID = ChainId.MAINNET;
 
-// 'nWinponDmrq-aZ0m9CmUVEQfqi9Z9XgA';
 const API_KEY_PRIVATE = 'de690419921a4008b54557185153f07e';
 const API_KEY_PUBLIC = 'de690419921a4008b54557185153f07e';
 
@@ -49,21 +48,6 @@ const dev = {
   paymentGatewayUrl: 'https://verified.azurewebsites.net/api/paymentgateway',
   // paymentGatewayUrl: 'http://localhost:7071/api/paymentgateway',
   graphApiUrl: 'https://api.thegraph.com/subgraphs/name/verified-network/wallet',
-  stripe: {
-    publicApiKey: `pk_test_51HSQdaEo1zIBQw9kkxNl08fygOyKh3mvQ9qRfOUaHNE
-                   qFjPq7brs0qM9LxnzPAXutF8FsYXPKbTpHUKHBliqtjaC00Yo1h3yb7`,
-    accountLinkReturnUrl: 'https://wallet.verified.network/investor/pay',
-    accountLinkRefreshUrl: 'https://wallet.verified.network/investor/pay',
-    issuerPaymentSuccessReturnUrl: 'https://wallet.verified.network/issuer/payment_success',
-    issuerPaymentCancelReturnUrl: 'https://wallet.verified.network/issuer/payment_success',
-    investorPaymentSuccessReturnUrl: 'https://wallet.verified.network/investor/payment_success',
-    investorPaymentCancelReturnUrl: 'https://wallet.verified.network/investor/payment_success',
-  },
-  razor: {
-    checkoutScript: 'https://checkout.razorpay.com/v1/checkout.js',
-  },
-  passbaseApiKey: 'aLkAcMSMUke9INMBy6AkO8YiCw6Fb99SVAO572u4jwoynNttMgn4DGrElj3kwLFk',
-  passbaseMetadataUrl: 'https://verified.azurewebsites.net/api/passbasemetadata',
   emailApiUrl: 'https://verified.azurewebsites.net/api/emailsender',
 };
 

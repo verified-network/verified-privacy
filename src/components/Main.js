@@ -10,7 +10,7 @@ require('styles/Verified-common.css');
 import LogIn from './layouts/Common/Login';
 import PasswordStore from 'components/layouts/Common/PasswordStore';
 import PasswordModal from 'components/layouts/Common/PasswordModal';
-import InvestorMain from 'components/layouts/Issuer/Main';
+import IssuerMain from 'components/layouts/Issuer/Main';
 import LocalSessionManager from 'sources/utils/LocalSessionManager';
 import {PushNotificationProvider} from '../notifications/notificationsHandler';
 import {ApolloClient, InMemoryCache, ApolloProvider} from '@apollo/client';
@@ -97,7 +97,7 @@ class AppComponent extends React.Component {
               <PasswordModal show={passwordModalVisibility} onSubmit={this.handlePasswordSubmit} />
               <PasswordStore.Provider value={passwordStoreData}>
                 <QueryClientProvider client={queryClient}>
-                  <InvestorMain />
+                  <IssuerMain />
                 </QueryClientProvider>
               </PasswordStore.Provider>
             </Router>

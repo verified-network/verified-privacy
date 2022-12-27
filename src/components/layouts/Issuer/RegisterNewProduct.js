@@ -11,7 +11,7 @@ import PasswordStore from 'components/layouts/Common/PasswordStore';
 import UiButton from '../../ui/button/Button';
 import Country from 'components/ui/country/Country';
 import Loader from 'components/ui/Loader';
-import ProductContractService from '../../../sources/contracts/ProductContractService';
+//import ProductContractService from '../../../sources/contracts/ProductContractService';
 import {withTranslation} from 'react-i18next';
 
 const DEFAULT_USER_TYPE = 'business';
@@ -47,7 +47,7 @@ class RegisterNewProduct extends Component {
     this.context.getPassword().then((password) => {
       this.setState({loading: true});
 
-      const productContract = new ProductContractService(password);
+      /*const productContract = new ProductContractService(password);
 
       productContract
         .createProduct( productCategory, issuerName, issuerAddress, issuerCountry, issuerEmail,
@@ -61,7 +61,7 @@ class RegisterNewProduct extends Component {
         })
         .finally(() => {
           this.setState({loading: false});
-        });
+        });*/
     });
   }
 

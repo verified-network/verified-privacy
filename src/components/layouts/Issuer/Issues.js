@@ -6,7 +6,7 @@ import '../../../styles/css/order.less';
 import Loader from '../../ui/Loader';
 import notifier from 'components/ui/notifier';
 import PasswordStore from 'components/layouts/Common/PasswordStore';
-import ProductContractService, {IssueStatus, ProductCategory} from 'sources/contracts/ProductContractService';
+//import ProductContractService, {IssueStatus, ProductCategory} from 'sources/contracts/ProductContractService';
 import {withRouter} from 'react-router-dom';
 import Tabledropdown from 'components/ui/tableDropdown/TableDropdown';
 import RegisterCorporateAction from 'components/layouts/Issuer/RegisterCorporateAction';
@@ -47,7 +47,7 @@ class Issues extends Component {
 
   loadIssues = () => {
     return this.context.getPassword().then((password) => {
-      const productContract = new ProductContractService(password);
+      /*const productContract = new ProductContractService(password);
 
       this.setState({loading: true});
 
@@ -60,7 +60,7 @@ class Issues extends Component {
         })
         .finally(() => {
           this.setState({loading: false});
-        });
+        });*/
     });
   }
 
@@ -82,7 +82,7 @@ class Issues extends Component {
   }
 
   handleViewInvestors = (issueAddress) => {
-    this.props.history.push(`/investor/issues/${issueAddress}`);
+    this.props.history.push(`/issuer/issues/${issueAddress}`);
   }
 
   handleRegisterCorporateActionModalOpen = () => {

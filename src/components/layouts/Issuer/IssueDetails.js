@@ -6,7 +6,7 @@ import Loader from 'components/ui/Loader';
 import notifier from 'components/ui/notifier';
 import VerticallyModal from 'components/ui/modal/VerticallyModal';
 import UiButton from 'components/ui/button/Button';
-import ProductContractService from 'sources/contracts/ProductContractService';
+//import ProductContractService from 'sources/contracts/ProductContractService';
 
 class IssueDetails extends Component {
   static contextType = PasswordStore;
@@ -22,7 +22,7 @@ class IssueDetails extends Component {
 
   componentDidMount() {
     return this.context.getPassword().then((password) => {
-      const productContract = new ProductContractService(password);
+      //const productContract = new ProductContractService(password);
 
       this.setState({loading: true});
 
@@ -32,7 +32,7 @@ class IssueDetails extends Component {
         return;
       }
 
-      productContract.getBondDetails(issueAddress)
+      /*productContract.getBondDetails(issueAddress)
         .then((details) => {
           this.setState({details});
         })
@@ -41,7 +41,7 @@ class IssueDetails extends Component {
         })
         .finally(() => {
           this.setState({loading: false});
-        });
+        });*/
     });
   }
 

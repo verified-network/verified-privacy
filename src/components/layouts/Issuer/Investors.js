@@ -6,7 +6,7 @@ import '../../../styles/css/order.less';
 import Loader from '../../ui/Loader';
 import notifier from 'components/ui/notifier';
 import PasswordStore from 'components/layouts/Common/PasswordStore';
-import ProductContractService from 'sources/contracts/ProductContractService';
+//import ProductContractService from 'sources/contracts/ProductContractService';
 import {withRouter} from 'react-router-dom';
 import TableDropdown from 'components/ui/tableDropdown/TableDropdown';
 import PayoutIssue from 'components/layouts/Investor/PayoutIssue';
@@ -45,11 +45,11 @@ class Investors extends Component {
 
   loadBeneficiaries = (issueAddress) => {
     return this.context.getPassword().then((password) => {
-      const productContract = new ProductContractService(password);
+      //const productContract = new ProductContractService(password);
 
       this.setState({loading: true});
 
-      productContract.getBeneficiaries(issueAddress)
+      /*productContract.getBeneficiaries(issueAddress)
         .then((beneficiaries) => {
           this.setState({beneficiaries});
         })
@@ -58,7 +58,7 @@ class Investors extends Component {
         })
         .finally(() => {
           this.setState({loading: false});
-        });
+        });*/
     });
   }
 

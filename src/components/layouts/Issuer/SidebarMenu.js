@@ -16,33 +16,33 @@ class SidebarMenu extends React.Component {
   constructor() {
     super();
 
-    this.state = {
+    /*this.state = {
       makePaymentModalVisibility: false,
       addMoneyModalVisibility: false,
       withdrawModalVisibility: false,
       exchangeModalVisibility: false,
       borrowMoneyModalVisibility: false,
       registerAccountModalVisibility: false,
-    };
+    };*/
   }
 
-  handleRegisterAccountModalOpen = () => {
+  /*handleRegisterAccountModalOpen = () => {
     this.setState({registerAccountModalVisibility: true});
   };
 
   handleRegisterAccountModalClose = () => {
     this.setState({registerAccountModalVisibility: false});
-  };
+  };*/
 
   redirectTo = (url) => {
     this.props.history.push(url);
   };
 
   render() {
-    const {
+    /*const {
       makePaymentModalVisibility, addMoneyModalVisibility, withdrawModalVisibility, exchangeModalVisibility,
       borrowMoneyModalVisibility,
-    } = this.state;
+    } = this.state;*/
 
     const {toggled, collapsed, handleToggleSidebar} = this.props;
 
@@ -76,23 +76,18 @@ class SidebarMenu extends React.Component {
           <SidebarContent>
             <Menu>
 
-              <SubMenu title='Finance'>
+              <SubMenu title='Issue new security'>
 
-                <MenuItem onClick={() => this.redirectTo('/issuer/products')}>Issue security</MenuItem>
+                <MenuItem onClick={() => this.redirectTo('/issuer/RegisterNewProduct')}>Issue security</MenuItem>
 
-                <SubMenu title='Service assets'
-                  onOpenChange={() => this.redirectTo('/issuer/service_assets')}>
+                <SubMenu title='Service assets'>
                   <MenuItem onClick={() => this.redirectTo('/issuer/issues')}>Issues</MenuItem>
                 </SubMenu>
               </SubMenu>
 
-              <SubMenu title='Register' onOpenChange={() => this.redirectTo('/issuer/invest')}>
-                <MenuItem onClick={() => this.redirectTo('/issuer/register_account')}>
-                  Register account
-                </MenuItem>
-
-                <MenuItem onClick={() => this.redirectTo('/issuer/register_existing_product')}>
-                  Register security
+              <SubMenu title='Register secondaries' >
+                <MenuItem onClick={() => this.redirectTo('/issuer/RegisterExistingProduct')}>
+                Register security
                 </MenuItem>
 
               </SubMenu>
@@ -100,32 +95,7 @@ class SidebarMenu extends React.Component {
           </SidebarContent>
         </ProSidebar>
 
-        <MakePayment
-          modalVisibility={makePaymentModalVisibility}
-          onModalHide = {this.handleMakePaymentModalClose}
-        />
-
-        <AddOrBorrowMoney
-          mode = {MoneyScreenMode.ADD_MONEY}
-          modalVisibility={addMoneyModalVisibility}
-          onModalHide = {this.handleAddMoneyModalClose}
-        />
-
-        <Withdraw
-          modalVisibility={withdrawModalVisibility}
-          onModalHide = {this.handleWithdrawModalClose}
-        />
-
-        <ExchangeCurrency
-          modalVisibility={exchangeModalVisibility}
-          onModalHide = {this.handleExchangeModalClose}
-        />
-
-        <AddOrBorrowMoney
-          mode = {MoneyScreenMode.BORROW_MONEY}
-          modalVisibility={borrowMoneyModalVisibility}
-          onModalHide = {this.handleBorrowMoneyModalClose}
-        />
+        
       </>
     );
   }

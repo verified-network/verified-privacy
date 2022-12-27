@@ -7,10 +7,9 @@ import PasswordStore from 'components/layouts/Common/PasswordStore';
 import Loader from 'components/ui/Loader';
 import notifier from 'components/ui/notifier';
 import {MESSAGES} from 'sources/messages';
-import ProductContractService from 'sources/contracts/ProductContractService';
-import Currency, {CurrencyType} from 'components/ui/currency/Currency';
+import ProductContractService, {AllotmentStatus} from 'sources/contracts/ProductContractService';
 
-class PayoutIssue extends Component {
+class AllotIssue extends Component {
   static contextType = PasswordStore;
 
   constructor(props) {
@@ -18,22 +17,27 @@ class PayoutIssue extends Component {
 
     this.state = {
       loading: false,
-      currency: '',
+      allotmentStatus: '',
       amount: '',
     };
   }
 
   handleSubmit = () => {
-    const {currency, amount} = this.state;
-    const investorAddress = this.props.investorAddress;
-    const issueAddress = this.props.issueAddress;
+    const {investor} = this.props;
+    const {allotmentStatus, amount} = this.state;
+
+    const issueAddress = investor.address;
+    const platform = investor.platform;
+    const pool = investor.poolid;
+    const investorAddress = investor.investorAddress;
+    const asset = investor.assetAddress;
 
     return this.context.getPassword().then((password) => {
       const productContract = new ProductContractService(password);
 
       this.setState({loading: true});
 
-      productContract.payout(issueAddress, investorAddress, currency.name, amount)
+      productContract.allotIssue(issueAddress, allotmentStatus, platform, pool, investorAddress, amount, asset)
         .then(() => {
           notifier.success('Success', MESSAGES.SUCCESS.TRANSACTION_PROCESSED);
         })
@@ -50,10 +54,6 @@ class PayoutIssue extends Component {
     this.setState({[e.target.name]: e.target.value});
   };
 
-  handleCurrencyChange = (currency) => {
-    this.setState({currency});
-  };
-
   handleModalHide = () => {
     this.resetInputs();
     this.props.onModalHide();
@@ -62,36 +62,45 @@ class PayoutIssue extends Component {
   resetInputs = () => {
     this.setState({
       loading: false,
-      currency: '',
       amount: '',
-      beneficiary: '',
     });
   }
 
   render() {
-    const {loading, amount} = this.state;
+    const {loading, amount, allotmentStatus} = this.state;
     const {modalVisibility} = this.props;
 
     return (
-      <ModalCard title='Payout issue' visibility={modalVisibility} modalSize='md'
+      <ModalCard title='Allot issue' visibility={modalVisibility} modalSize='md'
         onSubmit={this.handleSubmit} onHide={this.handleModalHide}>
         {loading ? <Loader/> : ''}
 
         <Form>
           <Row className="align-items-center">
             <Col xs={12}>
-              <Currency placeholderText='Currency' type={CurrencyType.CASH}
-                onChange={this.handleCurrencyChange}/>
+              <Form.Control
+                as="select"
+                placeholder="Action"
+                className="textForm custom-select dropdown"
+                name='allotmentStatus'
+                onChange={this.handleChange}
+              >
+                <option className="marginTop20" value=''>Action</option>
+                <option className="marginTop20" value={AllotmentStatus.ACCEPT}>Accept</option>
+                <option className="marginTop20" value={AllotmentStatus.REJECT}>Reject</option>
+              </Form.Control>
             </Col>
             {}
             <Col xs={12} className="marginTop10">
-              <TextInput
-                placeholder="Amount"
-                fieldType="text"
-                value={amount}
-                name='amount'
-                onChange={this.handleChange}
-              />
+              {allotmentStatus === AllotmentStatus.ACCEPT ? (
+                <TextInput
+                  placeholder="Amount"
+                  fieldType="text"
+                  value={amount}
+                  name='amount'
+                  onChange={this.handleChange}
+                />
+              ) : ''}
             </Col>
           </Row>
         </Form>
@@ -100,4 +109,4 @@ class PayoutIssue extends Component {
   }
 }
 
-export default PayoutIssue;
+export default AllotIssue;
