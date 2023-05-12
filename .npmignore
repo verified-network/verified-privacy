@@ -2,13 +2,22 @@
 logs
 *.log
 build
-dist
 src-gen
 node_modules/
 *.tsbuildinfo
 .env
 node_modules
-src/types
+src
+test
+imgs
+hardhat_scripts
+evaluation
+contracts
+chains
+dist/test
+dist/evaluation
+hardhat.config.ts
+optimized-storage-proof.md
 
 #Hardhat files
 cache
@@ -19,5 +28,3 @@ data/
 target/
 node_modules
 .vscode/
-
-görliTestAccount.json
