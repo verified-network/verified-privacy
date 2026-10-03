@@ -1,4 +1,5 @@
 import * as hre from "hardhat";
+const { ethers } = require("hardhat");
 
 async function main() {
     const provider = new hre.ethers.providers.JsonRpcProvider();

@@ -79,7 +79,7 @@ describe('Test CLI', async () => {
         const forkCommand = buildCLICommand('f', `${srcContract.address} ${relayContract.address}`, true, logger.settings.minLevel);
         logger.debug(`Executing:\n${forkCommand}`);
 
-        const output = execSync(forkCommand);
+        const output = execSync(forkCommand, { shell: 'bash' });
         logger.debug(`\n${output}`);
 
         const matcher = output.toString().match(/[\w\W]+Logic contract address: (0x[\w\d]{40})[\w\W]+Address of proxyContract: (0x[\w\d]{40})/);
@@ -119,7 +119,7 @@ describe('Test CLI', async () => {
         const forkCommand = buildCLICommand('f', srcContract.address, true, logger.settings.minLevel);
         logger.debug(`Executing:\n${forkCommand}`);
 
-        const output = execSync(forkCommand);
+        const output = execSync(forkCommand, { shell: 'bash' });
         logger.debug(`\n${output}`);
 
         const matcher = output.toString().match(/[\w\W]+Relay contract address: (0x[\w\d]{40})[\w\W]+Logic contract address: (0x[\w\d]{40})[\w\W]+Address of proxyContract: (0x[\w\d]{40})/);
@@ -175,7 +175,7 @@ describe('Test CLI', async () => {
         const synchCommand = buildCLICommand('s', initialization.proxyContract.address, true, logger.settings.minLevel);
         logger.debug(`Executing:\n${synchCommand}`);
 
-        const output = execSync(synchCommand);
+        const output = execSync(synchCommand, { shell: 'bash' });
         logger.debug(`\n${output}`);
 
         const proxyProof = await targetProvider.send('eth_getProof', [initialization.proxyContract.address, []]);
@@ -338,7 +338,7 @@ describe('Test CLI', async () => {
         const synchCommand = buildCLICommand('s', initialization.proxyContract.address, true, logger.settings.minLevel, `--src-blocknr ${currBlockNr + 1}`);
         logger.debug(`Executing:\n${synchCommand}`);
 
-        const output = execSync(synchCommand);
+        const output = execSync(synchCommand, { shell: 'bash' });
         logger.debug(`\n${output}`);
 
         const proxyProof = await targetProvider.send('eth_getProof', [initialization.proxyContract.address, []]);
@@ -370,7 +370,7 @@ describe('Test CLI', async () => {
         const synchCommand = buildCLICommand('s', initialization.proxyContract.address, true, logger.settings.minLevel, `--src-blocknr ${currBlockNr + 1}`);
         logger.debug(`Executing:\n${synchCommand}`);
 
-        const output = execSync(synchCommand);
+        const output = execSync(synchCommand, { shell: 'bash' });
         logger.debug(`\n${output}`);
 
         const proxyProof = await targetProvider.send('eth_getProof', [initialization.proxyContract.address, []]);
@@ -403,7 +403,7 @@ describe('Test CLI', async () => {
         const synchCommand = buildCLICommand('s', initialization.proxyContract.address, true, logger.settings.minLevel, `--src-blocknr ${currBlockNr + 1}`);
         logger.debug(`Executing:\n${synchCommand}`);
 
-        const output = execSync(synchCommand);
+        const output = execSync(synchCommand, { shell: 'bash' });
         logger.debug(`\n${output}`);
 
         const proxyProof = await targetProvider.send('eth_getProof', [initialization.proxyContract.address, []]);
@@ -433,7 +433,7 @@ describe('Test CLI', async () => {
         const synchCommand = buildCLICommand('s', initialization.proxyContract.address, true, logger.settings.minLevel, '--diff-mode storage');
         logger.debug(`Executing:\n${synchCommand}`);
 
-        const output = execSync(synchCommand);
+        const output = execSync(synchCommand, { shell: 'bash' });
         logger.debug(`\n${output}`);
 
         const proxyProof = await targetProvider.send('eth_getProof', [initialization.proxyContract.address, []]);
@@ -587,7 +587,7 @@ describe('Test CLI', async () => {
         const synchCommand = buildCLICommand('s', initialization.proxyContract.address, true, logger.settings.minLevel, '--diff-mode storage');
         logger.debug(`Executing:\n${synchCommand}`);
 
-        const output = execSync(synchCommand);
+        const output = execSync(synchCommand, { shell: 'bash' });
         logger.debug(`\n${output}`);
 
         const proxyProof = await targetProvider.send('eth_getProof', [initialization.proxyContract.address, []]);
@@ -617,7 +617,7 @@ describe('Test CLI', async () => {
         const synchCommand = buildCLICommand('s', initialization.proxyContract.address, true, logger.settings.minLevel, '--diff-mode storage');
         logger.debug(`Executing:\n${synchCommand}`);
 
-        const output = execSync(synchCommand);
+        const output = execSync(synchCommand, { shell: 'bash' });
         logger.debug(`\n${output}`);
 
         const proxyProof = await targetProvider.send('eth_getProof', [initialization.proxyContract.address, []]);
@@ -643,7 +643,7 @@ describe('Test CLI', async () => {
 
         let stateCommand = buildCLICommand('status', cleanSlateProxy.address, false, logger.settings.minLevel);
         logger.debug(`Executing:\n${stateCommand}`);
-        let output = execSync(stateCommand);
+        let output = execSync(stateCommand, { shell: 'bash' });
 
         let result = output.toString().match(/[\w\W]+migration-status: false/);
         expect(result).to.not.be.null;
@@ -661,7 +661,7 @@ describe('Test CLI', async () => {
 
         stateCommand = buildCLICommand('status', initialization.proxyContract.address, false, logger.settings.minLevel);
         logger.debug(`Executing:\n${stateCommand}`);
-        output = execSync(stateCommand);
+        output = execSync(stateCommand, { shell: 'bash' });
 
         result = output.toString().match(/[\w\W]+migration-status: true/);
         return expect(result).to.not.be.null;
@@ -682,7 +682,7 @@ describe('Test CLI', async () => {
 
         let diffCommand = buildCLICommand('diff', `${srcContract.address} ${initialization.proxyContract.address}`, false, logger.settings.minLevel);
         logger.debug(`Executing:\n${diffCommand}`);
-        let output = execSync(diffCommand);
+        let output = execSync(diffCommand, { shell: 'bash' });
         logger.debug(`\n${output}`);
         let result = output.toString().match(/[\w\W]+Adds: \n\[\][\w\W]+Changes: \n\[\][\w\W]+Deletions: \n\[\]/);
         expect(result).to.not.be.null;
@@ -697,7 +697,7 @@ describe('Test CLI', async () => {
         diffCommand = buildCLICommand('diff', srcContract.address, false, logger.settings.minLevel, `--src-blocknr ${currBlockNr + 1}`);
         logger.debug(`Executing:\n${diffCommand}`);
 
-        output = execSync(diffCommand);
+        output = execSync(diffCommand, { shell: 'bash' });
         logger.debug(`\n${output}`);
         result = output.toString().match(/[\w\W]+Changes: \n(\[[\w\W]+\])/);
         expect(result).to.not.be.null;
@@ -727,7 +727,7 @@ describe('Test CLI', async () => {
 
         let diffCommand = buildCLICommand('diff', `${srcContract.address} ${initialization.proxyContract.address}`, false, logger.settings.minLevel);
         logger.debug(`Executing:\n${diffCommand}`);
-        let output = execSync(diffCommand);
+        let output = execSync(diffCommand, { shell: 'bash' });
         logger.debug(`\n${output}`);
         let result = output.toString().match(/[\w\W]+Adds: \n\[\][\w\W]+Changes: \n\[\][\w\W]+Deletions: \n\[\]/);
         expect(result).to.not.be.null;
@@ -742,7 +742,7 @@ describe('Test CLI', async () => {
         diffCommand = buildCLICommand('diff', srcContract.address, false, logger.settings.minLevel, `--src-blocknr ${currBlockNr + 1}`);
         logger.debug(`Executing:\n${diffCommand}`);
 
-        output = execSync(diffCommand);
+        output = execSync(diffCommand, { shell: 'bash' });
         logger.debug(`\n${output}`);
         result = output.toString().match(/[\w\W]+Adds: \n(\[[\w\W]+\])/);
         expect(result).to.not.be.null;
@@ -772,7 +772,7 @@ describe('Test CLI', async () => {
 
         let diffCommand = buildCLICommand('diff', `${srcContract.address} ${initialization.proxyContract.address}`, false, logger.settings.minLevel);
         logger.debug(`Executing:\n${diffCommand}`);
-        let output = execSync(diffCommand);
+        let output = execSync(diffCommand, { shell: 'bash' });
         logger.debug(`\n${output}`);
         let result = output.toString().match(/[\w\W]+Adds: \n\[\][\w\W]+Changes: \n\[\][\w\W]+Deletions: \n\[\]/);
         expect(result).to.not.be.null;
@@ -787,7 +787,7 @@ describe('Test CLI', async () => {
         diffCommand = buildCLICommand('diff', srcContract.address, false, logger.settings.minLevel, `--src-blocknr ${currBlockNr + 1}`);
         logger.debug(`Executing:\n${diffCommand}`);
 
-        output = execSync(diffCommand);
+        output = execSync(diffCommand, { shell: 'bash' });
         logger.debug(`\n${output}`);
         result = output.toString().match(/[\w\W]+Deletions: \n(\[[\w\W]+\])/);
         expect(result).to.not.be.null;
@@ -817,7 +817,7 @@ describe('Test CLI', async () => {
 
         let diffCommand = buildCLICommand('diff', `${srcContract.address} ${initialization.proxyContract.address}`, false, logger.settings.minLevel, '--diff-mode getProof');
         logger.debug(`Executing:\n${diffCommand}`);
-        let output = execSync(diffCommand);
+        let output = execSync(diffCommand, { shell: 'bash' });
         logger.debug(`\n${output}`);
         let result = output.toString().match(/[\w\W]+Adds: \n\[\][\w\W]+Changes: \n\[\][\w\W]+Deletions: \n\[\]/);
         expect(result).to.not.be.null;
@@ -832,7 +832,7 @@ describe('Test CLI', async () => {
         diffCommand = buildCLICommand('diff', srcContract.address, false, logger.settings.minLevel, `--src-blocknr ${currBlockNr} --diff-mode getProof`);
         logger.debug(`Executing:\n${diffCommand}`);
 
-        output = execSync(diffCommand);
+        output = execSync(diffCommand, { shell: 'bash' });
         logger.debug(`\n${output}`);
         result = output.toString().match(/[\w\W]+Changes: \n(\[[\w\W]+\])/);
         expect(result).to.not.be.null;
@@ -862,7 +862,7 @@ describe('Test CLI', async () => {
 
         let diffCommand = buildCLICommand('diff', `${srcContract.address} ${initialization.proxyContract.address}`, false, logger.settings.minLevel, '--diff-mode storage');
         logger.debug(`Executing:\n${diffCommand}`);
-        let output = execSync(diffCommand);
+        let output = execSync(diffCommand, { shell: 'bash' });
         logger.debug(`\n${output}`);
         let result = output.toString().match(/[\w\W]+Adds: \n\[\][\w\W]+Changes: \n\[\][\w\W]+Deletions: \n\[\]/);
         expect(result).to.not.be.null;
@@ -874,7 +874,7 @@ describe('Test CLI', async () => {
         diffCommand = buildCLICommand('diff', `${srcContract.address} ${initialization.proxyContract.address}`, false, logger.settings.minLevel, '--diff-mode storage');
         logger.debug(`Executing:\n${diffCommand}`);
 
-        output = execSync(diffCommand);
+        output = execSync(diffCommand, { shell: 'bash' });
         logger.debug(`\n${output}`);
         result = output.toString().match(/[\w\W]+Changes: \n(\[[\w\W]+\])/);
         expect(result).to.not.be.null;
@@ -904,7 +904,7 @@ describe('Test CLI', async () => {
 
         let diffCommand = buildCLICommand('diff', `${srcContract.address} ${initialization.proxyContract.address}`, false, logger.settings.minLevel, '--diff-mode storage');
         logger.debug(`Executing:\n${diffCommand}`);
-        let output = execSync(diffCommand);
+        let output = execSync(diffCommand, { shell: 'bash' });
         logger.debug(`\n${output}`);
         let result = output.toString().match(/[\w\W]+Adds: \n\[\][\w\W]+Changes: \n\[\][\w\W]+Deletions: \n\[\]/);
         expect(result).to.not.be.null;
@@ -919,7 +919,7 @@ describe('Test CLI', async () => {
         diffCommand = buildCLICommand('diff', `${srcContract.address} ${initialization.proxyContract.address}`, false, logger.settings.minLevel, '--diff-mode storage');
         logger.debug(`Executing:\n${diffCommand}`);
 
-        output = execSync(diffCommand);
+        output = execSync(diffCommand, { shell: 'bash' });
         logger.debug(`\n${output}`);
         result = output.toString().match(/[\w\W]+Adds: \n(\[[\w\W]+\])/);
         expect(result).to.not.be.null;
@@ -949,7 +949,7 @@ describe('Test CLI', async () => {
 
         let diffCommand = buildCLICommand('diff', `${srcContract.address} ${initialization.proxyContract.address}`, false, logger.settings.minLevel, '--diff-mode storage');
         logger.debug(`Executing:\n${diffCommand}`);
-        let output = execSync(diffCommand);
+        let output = execSync(diffCommand, { shell: 'bash' });
         logger.debug(`\n${output}`);
         let result = output.toString().match(/[\w\W]+Adds: \n\[\][\w\W]+Changes: \n\[\][\w\W]+Deletions: \n\[\]/);
         expect(result).to.not.be.null;
@@ -961,7 +961,7 @@ describe('Test CLI', async () => {
         diffCommand = buildCLICommand('diff', `${initialization.proxyContract.address} ${srcContract.address}`, false, logger.settings.minLevel, `--diff-mode storage --src-chain-rpc-url ${chainConfigs?.targetChainRpcUrl} --target-chain-rpc-url ${chainConfigs?.srcChainRpcUrl} --target-blocknr latest`);
         logger.debug(`Executing:\n${diffCommand}`);
 
-        output = execSync(diffCommand);
+        output = execSync(diffCommand, { shell: 'bash' });
         logger.debug(`\n${output}`);
         result = output.toString().match(/[\w\W]+Deletions: \n(\[[\w\W]+\])/);
         expect(result).to.not.be.null;
@@ -994,7 +994,7 @@ describe('Test CLI', async () => {
         logger.debug(`Latest block before exec command: ${latestBlock}`);
         const stateCommand = buildCLICommand('blocknr', initialization.proxyContract.address, false, logger.settings.minLevel);
         logger.debug(`Executing:\n${stateCommand}`);
-        const output = execSync(stateCommand);
+        const output = execSync(stateCommand, { shell: 'bash' });
         logger.debug(output.toString());
 
         const regexr = new RegExp(`[\\w\\W]+Current synched block number: ${ethers.BigNumber.from(latestBlock).toNumber()}`);

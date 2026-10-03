@@ -207,15 +207,17 @@ test | Run tests
 
 ### Install CLI
 To compile and install the CLI run:
+
 ```bash
 $ npx grunt install
 ```
 ## Chain
-Generally, you don't need to start the chain individually since its already started if you execute the command:
+Start the chains individually with the command:
+
 ``` bash
-$ npm run test
+$ npx hardhat accounts --network disco
+$ npx hardhat accounts --network disco2
 ```
-See [readme](chain/README.md) on how to start the test chains.
 
 ## Linter
 We use the code style from [airbnb](https://www.npmjs.com/package/eslint-config-airbnb-base).
@@ -226,10 +228,22 @@ $ npx grunt eslint
 ```
 
 ## Tests
-To run all the tests run (requires a running ethereum node, see [hardhat.config.ts](./hardhat.config.ts) and [hardhat.org/config](https://hardhat.org/config/)):
+To run all the tests using explicitly started chains using npx hardhat accounts command above (requires a running ethereum node, see [hardhat.config.ts](./hardhat.config.ts) and [hardhat.org/config](https://hardhat.org/config/)), run : 
 
 ```bash
 $ npm run test
+```
+
+However, if running the tests with chains explicitly started run into errors, then just run 
+
+```bash
+$ npx hardhat test
+```
+
+To execute a single test, run
+
+```bash
+$ npx hardhat test test/cli-test.ts
 ```
 
 ### Adjusting ports of the test chains

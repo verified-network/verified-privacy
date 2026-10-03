@@ -26,14 +26,18 @@ export default {
         }]
     },
     disco: {
-      url: "http://127.0.0.1:8545",
+      //url: "http://127.0.0.1:8545", 
+      url: "http://localhost:9550", //test-cli config
       gas: 1000000,
-      timeout: 3600000
+      timeout: 3600000,
+      accounts: ["0x2f6b8e2dc397013c43281c30e01bd6b67625031b2607b48fd72cc8c9aba08a3a"]
     },
     disco2: {
-        url: "http://127.0.0.1:8547",
+        //url: "http://127.0.0.1:8547",
+        url: "http://localhost:9552", //test-cli config
         gas: 1000000000,
-        timeout: 3600000
+        timeout: 3600000,
+        accounts: ["0x2f6b8e2dc397013c43281c30e01bd6b67625031b2607b48fd72cc8c9aba08a3a"]
     }
   },
   typechain: {

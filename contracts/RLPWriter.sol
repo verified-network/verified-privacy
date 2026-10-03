@@ -8,7 +8,6 @@ pragma solidity >=0.6.0 <0.8.0;
  */
 library RLPWriter {
 
-
     /**
     * @dev RLP encodes a series of bytes.
     * @param _item The bytes to encode.
